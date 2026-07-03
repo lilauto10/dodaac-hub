@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DoDAAC Knowledge Hub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg-page: #F0F4F8;
+  --bg-sidebar: #FFFFFF;
+  --bg-card: rgba(255,255,255,0.70);
+  --bg-card-solid: #FFFFFF;
+  --bg-card-hover: rgba(255,255,255,0.85);
+  --border-card: rgba(255,255,255,0.8);
+  --shadow-card: 0 8px 32px rgba(27,58,107,0.10);
+  --shadow-card-hover: 0 12px 40px rgba(27,58,107,0.16);
+  --blur-card: blur(12px);
+  --accent-primary: #1B3A6B;
+  --accent-secondary: #2563EB;
+  --accent-highlight: #3B82F6;
+  --accent-glow: rgba(59,130,246,0.0);
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --border-subtle: rgba(148,163,184,0.3);
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --nav-active-bg: rgba(37,99,235,0.08);
+  --nav-hover-bg: rgba(37,99,235,0.04);
+  --info-bg: rgba(37,99,235,0.06);
+  --info-border: rgba(37,99,235,0.25);
+  --warning-bg: rgba(245,158,11,0.08);
+  --warning-border: rgba(245,158,11,0.3);
+  --table-alt: rgba(241,245,249,0.7);
+  --topbar-bg: rgba(255,255,255,0.82);
+  --topbar-border: rgba(148,163,184,0.2);
+  --scrollbar-thumb: #CBD5E1;
+  --scrollbar-track: transparent;
+  --tooltip-bg: rgba(255,255,255,0.95);
+  --tooltip-border: rgba(148,163,184,0.3);
+  --code-bg: rgba(241,245,249,0.8);
+  --link-color: #2563EB;
+  --link-hover-color: #1D4ED8;
+  --disclaimer-bg: rgba(251,191,36,0.15);
+  --disclaimer-border: rgba(251,191,36,0.4);
+  --disclaimer-text: #92400E;
+  --verified-bg: rgba(16,185,129,0.15);
+  --verified-border: rgba(16,185,129,0.4);
+  --verified-color: #059669;
+  --classif-header-height: 28px;
+  --topbar-height: 64px;
+  --sticky-top: calc(var(--classif-header-height) + var(--topbar-height));
+}
+html.dark {
+  --bg-page: #0A0F1E;
+  --bg-sidebar: #0D1529;
+  --bg-card: rgba(15,30,65,0.55);
+  --bg-card-solid: #111B36;
+  --bg-card-hover: rgba(15,30,65,0.75);
+  --border-card: rgba(59,130,246,0.2);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-card-hover: 0 12px 40px rgba(0,0,0,0.55);
+  --blur-card: blur(16px);
+  --accent-primary: #3B82F6;
+  --accent-secondary: #60A5FA;
+  --accent-highlight: #3B82F6;
+  --accent-glow: rgba(59,130,246,0.15);
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-subtle: rgba(59,130,246,0.15);
+  --color-success: #34D399;
+  --color-warning: #FBBF24;
+  --color-danger: #F87171;
+  --nav-active-bg: rgba(59,130,246,0.12);
+  --nav-hover-bg: rgba(59,130,246,0.06);
+  --info-bg: rgba(59,130,246,0.1);
+  --info-border: rgba(59,130,246,0.3);
+  --warning-bg: rgba(245,158,11,0.12);
+  --warning-border: rgba(245,158,11,0.25);
+  --table-alt: rgba(17,27,54,0.5);
+  --topbar-bg: rgba(13,21,41,0.88);
+  --topbar-border: rgba(59,130,246,0.12);
+  --scrollbar-thumb: #1E3A5F;
+  --scrollbar-track: transparent;
+  --tooltip-bg: rgba(13,21,41,0.95);
+  --tooltip-border: rgba(59,130,246,0.25);
+  --code-bg: rgba(17,27,54,0.7);
+  --link-color: #60A5FA;
+  --link-hover-color: #93BBFD;
+  --disclaimer-bg: rgba(180,130,20,0.2);
+  --disclaimer-border: rgba(251,191,36,0.3);
+  --disclaimer-text: #FBBF24;
+  --verified-bg: rgba(16,185,129,0.1);
+  --verified-border: rgba(52,211,153,0.3);
+  --verified-color: #34D399;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; height: 100%; min-width: 320px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 0.9375rem;
+  transition: background 0.35s ease, color 0.35s ease;
+  min-height: 100%;
+  min-width: 320px;
+}
+
+.ext-link {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+.ext-link:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--blur-card);
+  -webkit-backdrop-filter: var(--blur-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  border-radius: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+.glass-card-static {
+  background: var(--bg-card);
+  backdrop-filter: var(--blur-card);
+  -webkit-backdrop-filter: var(--blur-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  border-radius: 1rem;
+}
+
+/* CLASSIFICATION HEADER — sticky at very top */
+#classif-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  width: 100%;
+  background: #1a7f37;
+  color: #fff;
+  text-align: center;
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 5px 0;
+}
+
+/* TOPBAR — sticky below classif header */
+.topbar {
+  position: sticky;
+  top: var(--classif-header-height);
+  z-index: 100;
+  height: var(--topbar-height);
+  background: var(--topbar-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--topbar-border);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+
+.disclaimer-banner {
+  background: var(--disclaimer-bg);
+  border: 1px solid var(--disclaimer-border);
+  border-left: none; border-right: none;
+  color: var(--disclaimer-text);
+  padding: 0.75rem 1.25rem;
+  animation: disclaimerFadeIn 0.6s ease forwards;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+@keyframes disclaimerFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* PAGE WRAPPER — flex row for sidebar + main */
+#page-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* SIDEBAR — sticky within flex layout */
+.sidebar {
+  position: sticky;
+  top: var(--sticky-top);
+  align-self: flex-start;
+  width: 260px;
+  flex-shrink: 0;
+  max-height: calc(100vh - var(--sticky-top));
+  overflow-y: auto;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-subtle);
+  z-index: 40;
+  transition: background 0.35s ease, border-color 0.35s ease;
+}
+.sidebar-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 1.2rem 1.25rem 0.4rem;
+}
+.sidebar-link {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.55rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+.sidebar-link:hover {
+  background: var(--nav-hover-bg);
+  color: var(--text-primary);
+}
+.sidebar-link.active {
+  border-left-color: var(--accent-highlight);
+  background: var(--nav-active-bg);
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+html.dark .sidebar-link.active { color: var(--accent-secondary); }
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 2rem 2.5rem 3rem;
+  max-width: 1200px;
+}
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.accordion-item { border-left: 4px solid var(--accent-primary); margin-bottom: 0.5rem; border-radius: 0.75rem; overflow: hidden; }
+html.dark .accordion-item { border-left-color: var(--accent-highlight); }
+.accordion-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.25rem; cursor: pointer;
+  background: var(--bg-card); font-weight: 600; font-size: 0.9375rem;
+  color: var(--text-primary); transition: background 0.15s ease;
+  user-select: none;
+}
+.accordion-header:hover { background: var(--bg-card-hover); }
+.accordion-chevron { transition: transform 0.35s ease; }
+.accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+.accordion-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  background: var(--bg-card);
+  padding: 0 1.25rem;
+}
+.accordion-item.open .accordion-body { max-height: 1600px; padding: 0.5rem 1.25rem 1.25rem; }
+
+.info-box {
+  background: var(--info-bg); border: 1px solid var(--info-border);
+  border-radius: 0.75rem; padding: 1rem 1.25rem;
+}
+.warning-box {
+  background: var(--warning-bg); border: 1px solid var(--warning-border);
+  border-radius: 0.75rem; padding: 1rem 1.25rem;
+}
+
+.code-char {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 3.5rem; height: 3.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700;
+  border-radius: 0.625rem; transition: box-shadow 0.3s ease;
+}
+.code-char.seg1 { background: rgba(37,99,235,0.15); color: #2563EB; box-shadow: 0 0 12px rgba(37,99,235,0.2); }
+.code-char.seg2 { background: rgba(27,58,107,0.12); color: var(--accent-primary); box-shadow: 0 0 12px rgba(27,58,107,0.15); }
+.code-char.seg3 { background: rgba(59,130,246,0.12); color: var(--accent-highlight); box-shadow: 0 0 12px rgba(59,130,246,0.15); }
+html.dark .code-char.seg1 { background: rgba(59,130,246,0.2); color: #60A5FA; }
+html.dark .code-char.seg2 { background: rgba(96,165,250,0.15); color: #93BBFD; }
+html.dark .code-char.seg3 { background: rgba(59,130,246,0.18); color: #7DD3FC; }
+
+.checklist-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.5rem 0; }
+.checklist-item.checked label { text-decoration: line-through; opacity: 0.5; }
+.checklist-item input[type="checkbox"] {
+  width: 1.125rem; height: 1.125rem; margin-top: 0.2rem;
+  accent-color: var(--accent-highlight); cursor: pointer; flex-shrink: 0;
+}
+
+.timeline-step { position: relative; padding-left: 3rem; padding-bottom: 2rem; }
+.timeline-step::before {
+  content: ''; position: absolute; left: 1.1rem; top: 2.5rem; bottom: 0;
+  width: 2px; background: var(--border-subtle);
+}
+.timeline-step:last-child::before { display: none; }
+.step-number {
+  position: absolute; left: 0; top: 0;
+  width: 2.25rem; height: 2.25rem;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.8125rem; color: #fff;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-highlight));
+}
+html.dark .step-number { background: linear-gradient(135deg, #2563EB, #3B82F6); }
+
+.tooltip-trigger { border-bottom: 1px dashed var(--accent-secondary); cursor: help; position: relative; }
+.tooltip-card {
+  position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) scale(0.9);
+  background: var(--tooltip-bg); border: 1px solid var(--tooltip-border);
+  backdrop-filter: blur(10px); border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary);
+  white-space: nowrap; max-width: 280px; z-index: 999;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.tooltip-trigger:hover .tooltip-card,
+.tooltip-trigger.tooltip-active .tooltip-card {
+  opacity: 1; transform: translateX(-50%) scale(1); pointer-events: auto;
+}
+
+.search-results {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+  background: var(--tooltip-bg); border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(14px); border-radius: 0.75rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  max-height: 400px; overflow-y: auto;
+  z-index: 100; display: none;
+}
+.search-results.show { display: block; }
+.search-result-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.75rem 1rem; cursor: pointer;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.12s ease;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover, .search-result-item.active { background: var(--nav-active-bg); }
+.search-highlight { background: rgba(245,158,11,0.3); border-radius: 2px; padding: 0 2px; }
+
+.glossary-entry {
+  border-left: 3px solid var(--accent-highlight);
+  padding: 0.75rem 1rem; margin-bottom: 0.75rem;
+  background: var(--bg-card); border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.resource-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.resource-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+
+.scroll-top-btn {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 60;
+  width: 44px; height: 44px;
+  border-radius: 50%; border: none; cursor: pointer;
+  background: var(--accent-highlight); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(59,130,246,0.35);
+  opacity: 0; transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.scroll-top-btn.show { opacity: 1; transform: scale(1); pointer-events: auto; }
+.scroll-top-btn:active { transform: scale(0.93); }
+
+.dm-toggle {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; border: 1px solid var(--border-subtle);
+  background: var(--bg-card); color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+.dm-toggle:hover { background: var(--nav-active-bg); }
+.dm-toggle:active { transform: scale(0.93); }
+.dm-toggle i { transition: transform 0.3s ease; }
+html.dark .dm-toggle i { transform: rotate(180deg); }
+
+.sortable-th { cursor: pointer; user-select: none; }
+.sortable-th:hover { color: var(--accent-primary); }
+html.dark .sortable-th:hover { color: var(--accent-secondary); }
+
+.method-number {
+  width: 2rem; height: 2rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.75rem; color: #fff;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-highlight));
+  flex-shrink: 0;
+}
+html.dark .method-number { background: linear-gradient(135deg, #2563EB, #3B82F6); }
+
+.badge-green {
+  display: inline-block; font-size: 0.6875rem; font-weight: 600;
+  padding: 0.15rem 0.5rem; border-radius: 9999px;
+  background: rgba(16,185,129,0.12); color: var(--color-success);
+  border: 1px solid rgba(16,185,129,0.3);
+}
+.badge-amber {
+  display: inline-block; font-size: 0.6875rem; font-weight: 600;
+  padding: 0.15rem 0.5rem; border-radius: 9999px;
+  background: rgba(245,158,11,0.12); color: var(--color-warning);
+  border: 1px solid rgba(245,158,11,0.3);
+}
+.badge-red {
+  display: inline-block; font-size: 0.6875rem; font-weight: 600;
+  padding: 0.15rem 0.5rem; border-radius: 9999px;
+  background: rgba(239,68,68,0.12); color: var(--color-danger);
+  border: 1px solid rgba(239,68,68,0.3);
+}
+.field-badge {
+  display: inline-block; font-size: 0.6875rem; font-weight: 500;
+  padding: 0.1rem 0.4rem; border-radius: 0.25rem;
+  background: var(--code-bg); color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+.verified-badge {
+  display: inline-block; background: var(--verified-bg); border: 1px solid var(--verified-border);
+  color: var(--verified-color); padding: 2px 10px; border-radius: 999px;
+  font-size: 0.7rem; font-weight: 600;
+}
+
+/* ===== RESPONSIVE BREAKPOINT: 860px for sidebar visibility (Problem 4) ===== */
+/* Below 860px: sidebar is a drawer, main content is full-width */
+@media (max-width: 859px) {
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 280px;
+    height: 100%;
+    max-height: 100%;
+    z-index: 55;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, background 0.35s ease, border-color 0.35s ease;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0,0,0,0.2);
+  }
+  .main-content { padding: 1.25rem 1rem 2rem; }
+  .code-char { width: 2.75rem; height: 2.75rem; font-size: 1.15rem; }
+  .hero-title { font-size: 1.75rem !important; }
+  #mobile-menu-btn-a1b2 { display: flex !important; }
+  .desktop-sidebar-visible { display: none !important; }
+}
+@media (min-width: 860px) {
+  #mobile-menu-btn-a1b2 { display: none !important; }
+  .sidebar { display: block; }
+}
+
+.mobile-overlay {
+  position: fixed; inset: 0; z-index: 54;
+  background: rgba(0,0,0,0.4);
+  display: none;
+}
+.mobile-overlay.show { display: block; }
+
+/* ===== IFRAME FALLBACK (Problem 7) ===== */
+html.in-iframe #classif-header {
+  position: relative;
+  top: auto;
+}
+html.in-iframe .topbar {
+  position: relative;
+  top: auto;
+}
+html.in-iframe .sidebar {
+  position: relative;
+  top: auto;
+  max-height: none;
+  overflow-y: visible;
+  height: auto;
+}
+
+@media print {
+  .topbar, .sidebar, .scroll-top-btn, .dm-toggle, .mobile-overlay, #mobile-menu-btn-a1b2, .disclaimer-banner, #classif-header, #classif-footer, #opsec-notice-card { display: none !important; }
+  .main-content { margin-left: 0 !important; padding: 0 !important; }
+  #page-wrapper { display: block !important; }
+  .glass-card, .glass-card-static { box-shadow: none !important; backdrop-filter: none !important; border: 1px solid #ccc !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+button:active, a:active { transform: scale(0.97); }
+
+.az-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem; border-radius: 0.375rem;
+  font-size: 0.75rem; font-weight: 600; color: var(--text-secondary);
+  transition: all 0.15s ease; cursor: pointer; text-decoration: none;
+}
+.az-link:hover, .az-link.has-entries { color: var(--accent-primary); background: var(--nav-active-bg); }
+html.dark .az-link:hover, html.dark .az-link.has-entries { color: var(--accent-secondary); }
+.az-link.disabled { opacity: 0.3; cursor: default; }
+
+/* Footer */
+#footer-q3r4 {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+}
+</style>
+</head>
+<body data-id="0" class="antialiased">
+<app-icon data-id="1" hidden data-icon="shield" data-palette="Blue"></app-icon>
+
+<!-- ===================== CLASSIFICATION HEADER ===================== -->
+<div data-id="2" id="classif-header">
+  UNCLASSIFIED
+</div>
+
+<!-- ===================== TOP NAVIGATION BAR ===================== -->
+<header data-id="3" class="topbar flex items-center justify-between px-4 md:px-6" id="topbar-hdr-x1y2">
+  <div data-id="4" class="flex items-center gap-3">
+    <button data-id="5" id="mobile-menu-btn-a1b2" class="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label="Open navigation menu">
+      <i data-id="6" data-lucide="menu" class="w-5 h-5"></i>
+    </button>
+    <div data-id="7" class="flex items-center gap-2">
+      <i data-id="8" data-lucide="shield" class="w-6 h-6" style="color: var(--accent-primary)"></i>
+      <span data-id="9" class="font-extrabold text-base" style="color: var(--accent-primary)">DoDAAC</span>
+      <span data-id="10" class="hidden sm:inline text-sm font-medium" style="color: var(--text-muted)">Knowledge Hub</span>
+    </div>
+  </div>
+  <div data-id="11" class="relative flex-1 max-w-md mx-4" id="search-container-k3l4">
+    <div data-id="12" class="relative">
+      <i data-id="13" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+      <input data-id="14" type="text" id="global-search-m5n6" placeholder="Search all content..." class="w-full pl-9 pr-8 py-2 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400/40 transition" style="background: var(--bg-card); border-color: var(--border-subtle); color: var(--text-primary);" autocomplete="off" />
+      <button data-id="15" id="search-clear-o7p8" class="absolute right-2.5 top-1/2 -translate-y-1/2 hidden" style="color: var(--text-muted)" aria-label="Clear search">
+        <i data-id="16" data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <div data-id="17" class="search-results" id="search-results-q9r0"></div>
+  </div>
+  <div data-id="18" class="dm-toggle" id="dm-toggle-s1t2" aria-label="Toggle dark mode" role="button" tabindex="0">
+    <i data-id="19" data-lucide="sun" class="w-5 h-5 dm-icon-sun"></i>
+    <i data-id="20" data-lucide="moon" class="w-5 h-5 dm-icon-moon hidden"></i>
+  </div>
+</header>
+
+<!-- ===================== MOBILE OVERLAY ===================== -->
+<div data-id="21" class="mobile-overlay" id="mobile-overlay-u3v4"></div>
+
+<!-- ===================== PAGE WRAPPER (flex row: sidebar + main) ===================== -->
+<div data-id="22" id="page-wrapper">
+
+  <!-- ===================== LEFT SIDEBAR ===================== -->
+  <aside data-id="23" class="sidebar" id="sidebar-w5x6" aria-label="Main navigation">
+    <nav data-id="24" class="py-4">
+      <div data-id="25" class="sidebar-label">Main</div>
+      <a data-id="26" class="sidebar-link active" data-section="overview" href="#overview">
+        <i data-id="27" data-lucide="home" class="w-4 h-4 flex-shrink-0"></i><span data-id="28">Overview</span>
+      </a>
+      <a data-id="29" class="sidebar-link" data-section="what-is" href="#what-is">
+        <i data-id="30" data-lucide="clipboard-list" class="w-4 h-4 flex-shrink-0"></i><span data-id="31">What is a DoDAAC?</span>
+      </a>
+      <a data-id="32" class="sidebar-link" data-section="code-structure" href="#code-structure">
+        <i data-id="33" data-lucide="hash" class="w-4 h-4 flex-shrink-0"></i><span data-id="34">Code Structure</span>
+      </a>
+      <a data-id="35" class="sidebar-link" data-section="dodaac-types" href="#dodaac-types">
+        <i data-id="36" data-lucide="tags" class="w-4 h-4 flex-shrink-0"></i><span data-id="37">DoDAAC Types</span>
+      </a>
+      <div data-id="38" class="sidebar-label">Process</div>
+      <a data-id="39" class="sidebar-link" data-section="how-to-request" href="#how-to-request">
+        <i data-id="40" data-lucide="file-text" class="w-4 h-4 flex-shrink-0"></i><span data-id="41">How to Request</span>
+      </a>
+      <a data-id="42" class="sidebar-link" data-section="lookup-validation" href="#lookup-validation">
+        <i data-id="43" data-lucide="search" class="w-4 h-4 flex-shrink-0"></i><span data-id="44">Lookup &amp; Validation</span>
+      </a>
+      <a data-id="45" class="sidebar-link" data-section="troubleshooting" href="#troubleshooting">
+        <i data-id="46" data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0"></i><span data-id="47">Troubleshooting</span>
+      </a>
+      <div data-id="48" class="sidebar-label">Reference</div>
+      <a data-id="49" class="sidebar-link" data-section="reference-tables" href="#reference-tables">
+        <i data-id="50" data-lucide="table-2" class="w-4 h-4 flex-shrink-0"></i><span data-id="51">Reference Tables</span>
+      </a>
+      <a data-id="52" class="sidebar-link" data-section="glossary" href="#glossary">
+        <i data-id="53" data-lucide="book-open" class="w-4 h-4 flex-shrink-0"></i><span data-id="54">Glossary</span>
+      </a>
+      <a data-id="55" class="sidebar-link" data-section="resources" href="#resources">
+        <i data-id="56" data-lucide="external-link" class="w-4 h-4 flex-shrink-0"></i><span data-id="57">Resources</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main data-id="58" class="main-content" id="main-content-y7z8">
+
+    <!-- ========== DISCLAIMER BANNER ========== -->
+    <div data-id="59" class="disclaimer-banner mb-4 rounded-xl" id="disclaimer-banner-d1c2">
+      <div data-id="60" class="flex items-start gap-3 max-w-[1200px]">
+        <div data-id="61" class="flex items-center gap-2 flex-shrink-0 pt-0.5">
+          <span data-id="62" class="text-xl">⚠️</span>
+          <strong data-id="63" class="text-sm font-bold whitespace-nowrap" style="color: var(--disclaimer-text);">Disclaimer</strong>
+        </div>
+        <p data-id="64" class="text-xs flex-1" style="color: var(--disclaimer-text); opacity: 0.9; line-height: 1.6;">
+          This Knowledge Hub is provided as a general reference and training aid. Procedural details — including processing timelines, specific office routing, and regulatory citations — may vary by Component or change over time. Always verify with your Component DoDAAC Manager, local G4/N4/A4/S4, or DLA Transaction Services before taking action. Content references AFMAN 23-230 and DLM 4000.25 as primary sources.
+        </p>
+        <button data-id="65" class="flex-shrink-0 p-1 rounded-md transition hover:bg-black/10 dark:hover:bg-white/10 min-h-[32px] min-w-[32px] flex items-center justify-center" id="dismiss-disclaimer-x2y3" aria-label="Dismiss disclaimer" style="color: var(--disclaimer-text);">
+          <i data-id="66" data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== OPSEC NOTICE ========== -->
+    <div data-id="67" id="opsec-notice-card" class="glass-card-static p-4 mb-6" style="border-left: 3px solid #3B82F6; font-size: 0.875rem;">
+      <div data-id="68" class="flex items-start gap-3">
+        <span data-id="69" class="text-lg flex-shrink-0 mt-0.5">🔒</span>
+        <div data-id="70">
+          <strong data-id="71" style="color: var(--accent-primary);">OPSEC Notice</strong>
+          <p data-id="72" class="mt-1" style="color: var(--text-secondary); line-height: 1.6;">
+            This document contains general reference information only. Do NOT record, publish, or share specific unit DoDAACs, operational addresses, or funding lines in unsecured environments. DoDAACs associated with Special Access Programs (SAP), SCI, or contingency operations may be operationally sensitive. When in doubt, consult your unit security manager or Information Security Officer before sharing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECTION 1: OVERVIEW (HERO) ========== -->
+    <section data-id="73" id="overview" class="mb-16 reveal">
+      <div data-id="74" class="text-center mb-10 pt-4">
+        <h1 data-id="75" class="hero-title font-extrabold text-4xl md:text-5xl mb-4" style="color: var(--accent-primary); line-height: 1.15;">
+          DoDAAC Knowledge Hub
+        </h1>
+        <p data-id="76" class="text-base md:text-lg max-w-2xl mx-auto" style="color: var(--text-secondary);">
+          Your complete reference for Department of Defense Activity Address Codes — from structure and types to requesting, validating, and troubleshooting.
+        </p>
+      </div>
+      <div data-id="77" class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8">
+        <div data-id="78" class="glass-card p-5 text-center">
+          <div data-id="79" class="text-2xl mb-1">📦</div>
+          <div data-id="80" class="font-extrabold text-xl" style="color: var(--accent-primary);">6 Characters</div>
+          <div data-id="81" class="text-sm" style="color: var(--text-secondary);">Standard DoDAAC length</div>
+        </div>
+        <div data-id="82" class="glass-card p-5 text-center">
+          <div data-id="83" class="text-2xl mb-1">🏛️</div>
+          <div data-id="84" class="font-extrabold text-xl" style="color: var(--accent-primary);">All DoD Components</div>
+          <div data-id="85" class="text-sm" style="color: var(--text-secondary);">Army, Navy, Air Force, Marines, DLA, DCMA &amp; more</div>
+        </div>
+        <div data-id="86" class="glass-card p-5 text-center">
+          <div data-id="87" class="text-2xl mb-1">⚡</div>
+          <div data-id="88" class="font-extrabold text-xl" style="color: var(--accent-primary);">Real-Time Lookups</div>
+          <div data-id="89" class="text-sm" style="color: var(--text-secondary);">Via <a data-id="90" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link">PIEE</a>, <a data-id="91" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link">WAWF</a>, and <a data-id="92" href="https://home.daas.dla.mil/eDoDAAD/s_search/search_menu.asp" target="_blank" rel="noopener noreferrer" class="ext-link">DoDAAD</a> portals</div>
+        </div>
+      </div>
+      <div data-id="93" class="flex flex-wrap justify-center gap-2 text-sm">
+        <span data-id="94" style="color: var(--text-muted);" class="self-center mr-1 font-medium">Jump to:</span>
+        <a data-id="95" href="#how-to-request" class="px-3 py-1.5 rounded-full font-medium transition" style="background: var(--nav-active-bg); color: var(--accent-primary);">Request Process</a>
+        <a data-id="96" href="#code-structure" class="px-3 py-1.5 rounded-full font-medium transition" style="background: var(--nav-active-bg); color: var(--accent-primary);">Code Structure</a>
+        <a data-id="97" href="#reference-tables" class="px-3 py-1.5 rounded-full font-medium transition" style="background: var(--nav-active-bg); color: var(--accent-primary);">Reference Tables</a>
+        <a data-id="98" href="#glossary" class="px-3 py-1.5 rounded-full font-medium transition" style="background: var(--nav-active-bg); color: var(--accent-primary);">Glossary</a>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: WHAT IS A DODAAC? ========== -->
+    <section data-id="99" id="what-is" class="mb-16 reveal">
+      <h2 data-id="100" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="101" data-lucide="clipboard-list" class="w-6 h-6"></i> What is a DoDAAC?
+      </h2>
+      <div data-id="102" class="glass-card-static p-6 md:p-8 mb-4">
+        <p data-id="103" class="mb-5">
+          A <strong data-id="104" class="tooltip-trigger">DoDAAC<span data-id="105" class="tooltip-card">Department of Defense Activity Address Code — a 6-character alphanumeric identifier</span></strong> (Department of Defense Activity Address Code) is a <strong data-id="106">6-character alphanumeric code</strong> assigned by the <strong data-id="107" class="tooltip-trigger">DLA<span data-id="108" class="tooltip-card">Defense Logistics Agency — manages DoDAAC assignments and the DODAAD database</span></strong> (Defense Logistics Agency) to uniquely identify a DoD activity, unit, or organization for the purpose of ordering, shipping, billing, and accountability of supplies and services.
+        </p>
+        <h3 data-id="109" class="font-bold text-base mb-3" style="color: var(--accent-primary);">Key Purposes</h3>
+        <ul data-id="110" class="space-y-2 mb-5">
+          <li data-id="111" class="flex items-start gap-2"><i data-id="112" data-lucide="check-circle-2" class="w-5 h-5 flex-shrink-0 mt-0.5" style="color: var(--color-success)"></i><span data-id="113">Identify the ordering activity (requisitioner)</span></li>
+          <li data-id="114" class="flex items-start gap-2"><i data-id="115" data-lucide="check-circle-2" class="w-5 h-5 flex-shrink-0 mt-0.5" style="color: var(--color-success)"></i><span data-id="116">Identify the funding/billing activity (bill-to)</span></li>
+          <li data-id="117" class="flex items-start gap-2"><i data-id="118" data-lucide="check-circle-2" class="w-5 h-5 flex-shrink-0 mt-0.5" style="color: var(--color-success)"></i><span data-id="119">Identify the ship-to / delivery location</span></li>
+          <li data-id="120" class="flex items-start gap-2"><i data-id="121" data-lucide="check-circle-2" class="w-5 h-5 flex-shrink-0 mt-0.5" style="color: var(--color-success)"></i><span data-id="122">Track accountability for government property</span></li>
+          <li data-id="123" class="flex items-start gap-2"><i data-id="124" data-lucide="check-circle-2" class="w-5 h-5 flex-shrink-0 mt-0.5" style="color: var(--color-success)"></i><span data-id="125">Enable interfacing with <strong data-id="126" class="tooltip-trigger">WAWF<span data-id="127" class="tooltip-card">Wide Area Workflow — DoD electronic invoicing system (now a module inside PIEE)</span></strong>, <strong data-id="128" class="tooltip-trigger">PIEE<span data-id="129" class="tooltip-card">Procurement Integrated Enterprise Environment — DoD acquisition portal</span></strong>, <strong data-id="130" class="tooltip-trigger">DAAS<span data-id="131" class="tooltip-card">Defense Automatic Addressing System — routes DoD logistics messages</span></strong>, and other DoD systems</span></li>
+        </ul>
+        <div data-id="132" class="info-box flex items-start gap-3">
+          <i data-id="133" data-lucide="info" class="w-5 h-5 flex-shrink-0 mt-0.5" style="color: var(--accent-secondary)"></i>
+          <p data-id="134" class="text-sm"><strong data-id="135">Important:</strong> DoDAACs are NOT the same as <strong data-id="136" class="tooltip-trigger">UIC<span data-id="137" class="tooltip-card">Unit Identification Code — Army/Marine unit identifier (different from DoDAAC)</span></strong> (Unit Identification Codes), <strong data-id="138" class="tooltip-trigger">CAGE Codes<span data-id="139" class="tooltip-card">Commercial and Government Entity code — identifies contractors, NOT DoD activities</span></strong>, or contract numbers — though they often appear together in procurement documents.</p>
+        </div>
+        <h3 data-id="140" class="font-bold text-base mt-5 mb-2" style="color: var(--accent-primary);">Why It Matters</h3>
+        <p data-id="141" style="color: var(--text-secondary);">
+          DoDAACs are foundational to the entire defense acquisition lifecycle. Without a valid, active DoDAAC, a unit cannot requisition supplies, receive shipments, process invoices in <a data-id="142" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link">WAWF</a>, or maintain accountability of government property. They serve as the universal address in virtually every DoD logistics and procurement system.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: CODE STRUCTURE ========== -->
+    <section data-id="143" id="code-structure" class="mb-16 reveal">
+      <h2 data-id="144" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="145" data-lucide="hash" class="w-6 h-6"></i> Code Structure
+      </h2>
+      <div data-id="146" class="glass-card-static p-6 md:p-8 mb-6">
+        <h3 data-id="147" class="font-bold mb-4 text-center">Visual Code Anatomy</h3>
+        <div data-id="148" class="flex justify-center gap-2 md:gap-3 mb-6 flex-wrap" id="code-anatomy-a2b3">
+          <div data-id="149" class="text-center"><div data-id="150" class="code-char seg1">F</div><div data-id="151" class="text-xs mt-2 font-semibold" style="color: #2563EB;">Pos 1</div></div>
+          <div data-id="152" class="text-center"><div data-id="153" class="code-char seg2">1</div><div data-id="154" class="text-xs mt-2 font-semibold" style="color: var(--accent-primary);">Pos 2</div></div>
+          <div data-id="155" class="text-center"><div data-id="156" class="code-char seg2">B</div><div data-id="157" class="text-xs mt-2 font-semibold" style="color: var(--accent-primary);">Pos 3</div></div>
+          <div data-id="158" class="text-center"><div data-id="159" class="code-char seg3">2</div><div data-id="160" class="text-xs mt-2 font-semibold" style="color: var(--accent-highlight);">Pos 4</div></div>
+          <div data-id="161" class="text-center"><div data-id="162" class="code-char seg3">C</div><div data-id="163" class="text-xs mt-2 font-semibold" style="color: var(--accent-highlight);">Pos 5</div></div>
+          <div data-id="164" class="text-center"><div data-id="165" class="code-char seg3">3</div><div data-id="166" class="text-xs mt-2 font-semibold" style="color: var(--accent-highlight);">Pos 6</div></div>
+        </div>
+        <div data-id="167" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div data-id="168" class="p-4 rounded-xl" style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2);">
+            <div data-id="169" class="font-bold text-sm mb-1" style="color: #2563EB;">Position 1 — Service/Agency Prefix</div>
+            <p data-id="170" class="text-sm" style="color: var(--text-secondary);">A single letter indicating which DoD component owns this activity. Note: Some services use multiple prefix letters (e.g., Army uses A, C, W; Air Force uses E, F, J; Navy uses N, Q, R, V).</p>
+          </div>
+          <div data-id="171" class="p-4 rounded-xl" style="background: rgba(27,58,107,0.06); border: 1px solid rgba(27,58,107,0.15);">
+            <div data-id="172" class="font-bold text-sm mb-1" style="color: var(--accent-primary);">Position 2–3 — Sub-Activity Code</div>
+            <p data-id="173" class="text-sm" style="color: var(--text-secondary);">Numeric or alphanumeric sub-activity designator assigned within the component.</p>
+          </div>
+          <div data-id="174" class="p-4 rounded-xl" style="background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.15);">
+            <div data-id="175" class="font-bold text-sm mb-1" style="color: var(--accent-highlight);">Position 4–6 — Activity Identifier</div>
+            <p data-id="176" class="text-sm" style="color: var(--text-secondary);">Unique 3-character identifier for the specific activity within the component.</p>
+          </div>
+        </div>
+        <h3 data-id="177" class="font-bold text-base mb-3" style="color: var(--accent-primary);">Service / Agency Prefix Quick Reference</h3>
+        <p data-id="178" class="text-xs mb-3" style="color: var(--text-secondary);">First-position prefix letter(s) indicate the Service or Agency that owns the DoDAAC. Per DLM 4000.25, Volume 2, Appendix 7.2 and the DoDAAD Series Table. Note: "C" is Army Contractor, NOT Coast Guard. Coast Guard (USCG) DoDAACs fall under DHS and use the DHS federal series.</p>
+        <div data-id="179" class="overflow-x-auto rounded-xl">
+          <table data-id="180" class="w-full text-sm text-left">
+            <thead data-id="181"><tr data-id="182" style="background: var(--code-bg);"><th data-id="183" class="px-4 py-2.5 font-semibold" style="color: var(--text-muted);">Prefix</th><th data-id="184" class="px-4 py-2.5 font-semibold" style="color: var(--text-muted);">Service / Agency</th></tr></thead>
+            <tbody data-id="185">
+              <tr data-id="186"><td data-id="187" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">A</td><td data-id="188" class="px-4 py-2">Army (Non-Contractor)</td></tr>
+              <tr data-id="189" style="background: var(--table-alt);"><td data-id="190" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">C</td><td data-id="191" class="px-4 py-2">Army Contractor</td></tr>
+              <tr data-id="192"><td data-id="193" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">W</td><td data-id="194" class="px-4 py-2">Army (Additional Series)</td></tr>
+              <tr data-id="195" style="background: var(--table-alt);"><td data-id="196" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">F</td><td data-id="197" class="px-4 py-2">Air Force (Non-Contractor)</td></tr>
+              <tr data-id="198"><td data-id="199" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">E</td><td data-id="200" class="px-4 py-2">Air Force Contractor</td></tr>
+              <tr data-id="201" style="background: var(--table-alt);"><td data-id="202" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">J</td><td data-id="203" class="px-4 py-2">Air Force On-Base / Local Use</td></tr>
+              <tr data-id="204"><td data-id="205" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">N</td><td data-id="206" class="px-4 py-2">Navy (Non-Contractor)</td></tr>
+              <tr data-id="207" style="background: var(--table-alt);"><td data-id="208" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">Q</td><td data-id="209" class="px-4 py-2">Navy Contractor</td></tr>
+              <tr data-id="210"><td data-id="211" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">M</td><td data-id="212" class="px-4 py-2">United States Marine Corps</td></tr>
+              <tr data-id="213" style="background: var(--table-alt);"><td data-id="214" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">S</td><td data-id="215" class="px-4 py-2">Defense Logistics Agency (DLA)</td></tr>
+              <tr data-id="216"><td data-id="217" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">H</td><td data-id="218" class="px-4 py-2">Defense Health Agency</td></tr>
+              <tr data-id="219" style="background: var(--table-alt);"><td data-id="220" class="px-4 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">K</td><td data-id="221" class="px-4 py-2">Defense Contract Management Agency (DCMA)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: DODAAC TYPES ========== -->
+    <section data-id="222" id="dodaac-types" class="mb-16 reveal">
+      <h2 data-id="223" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="224" data-lucide="tags" class="w-6 h-6"></i> DoDAAC Types
+      </h2>
+      <p data-id="225" class="text-sm mb-4" style="color: var(--text-secondary);">All 15 functional DoDAAC types per AFMAN 23-230, plus Signal/Authority Code interaction guidance.</p>
+      <div data-id="226" class="glass-card-static p-4 md:p-6" id="types-accordion-c4d5">
+        <div data-id="227" class="accordion-item open">
+          <div data-id="228" class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+            <span data-id="229">1. Requisitioning DoDAAC (RQ)</span>
+            <i data-id="230" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="231" class="accordion-body">
+            <p data-id="232" class="text-sm" style="color: var(--text-secondary);">Used to place orders and requisitions for supplies and services. The activity identified by this DoDAAC is responsible for the requirement. Must be registered in <strong data-id="233" class="tooltip-trigger"><a data-id="234" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link" style="border-bottom: 1px dashed var(--accent-secondary);">PIEE</a><span data-id="235" class="tooltip-card">Procurement Integrated Enterprise Environment — DoD acquisition portal</span></strong> and authorized by the DoD Component. The RQ DoDAAC appears on every requisition document (MILSTRIP, purchase request, etc.) and links the order to the requesting unit.</p>
+          </div>
+        </div>
+        <div data-id="236" class="accordion-item">
+          <div data-id="237" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="238">2. Ship-To DoDAAC (ST)</span>
+            <i data-id="239" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="240" class="accordion-body">
+            <p data-id="241" class="text-sm" style="color: var(--text-secondary);">Identifies the physical location where supplies are to be delivered. Must include a valid <strong data-id="242" class="tooltip-trigger">DODAAD<span data-id="243" class="tooltip-card">Department of Defense Activity Address Directory — master DoDAAC database</span></strong> address entry with complete street address, city, state, and ZIP code. Critical for transportation routing and carrier delivery. An incorrect or missing Ship-To address is one of the most common causes of delivery delays.</p>
+          </div>
+        </div>
+        <div data-id="244" class="accordion-item">
+          <div data-id="245" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="246">3. Bill-To DoDAAC (BT)</span>
+            <i data-id="247" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="248" class="accordion-body">
+            <p data-id="249" class="text-sm" style="color: var(--text-secondary);">Identifies the activity responsible for payment and funding. Links to a <strong data-id="250" class="tooltip-trigger">LOA<span data-id="251" class="tooltip-card">Line of Accounting — funding citation for government purchases</span></strong> (Line of Accounting) and appropriation data. Must be active and funded in the relevant fiscal year (<strong data-id="252" class="tooltip-trigger">FY<span data-id="253" class="tooltip-card">Fiscal Year — DoD fiscal year runs Oct 1 – Sep 30</span></strong>). Finance offices use this DoDAAC to route invoices and obligate funds.</p>
+          </div>
+        </div>
+        <div data-id="254" class="accordion-item">
+          <div data-id="255" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="256">4. Supplementary Address / Mark-For DoDAAC (MF)</span>
+            <i data-id="257" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="258" class="accordion-body">
+            <p data-id="259" class="text-sm" style="color: var(--text-secondary);">A secondary routing identifier (formally "Supplementary Address" per DLM 4000.25, rp 45-50) placed on shipping containers to direct delivery to a sub-activity within a larger installation. The Mark-For DoDAAC is printed on the exterior packaging to help the receiving warehouse or mailroom route the shipment to the correct tenant unit. Not always required — typically used on large installations with multiple tenant organizations.</p>
+          </div>
+        </div>
+        <div data-id="260" class="accordion-item">
+          <div data-id="261" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="262">5. Admin DoDAAC</span>
+            <i data-id="263" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="264" class="accordion-body">
+            <p data-id="265" class="text-sm" style="color: var(--text-secondary);">Used for contract administration — identifies the Contract Administration Office (CAO) or Contracting Officer. Commonly associated with <strong data-id="266" class="tooltip-trigger">DCMA<span data-id="267" class="tooltip-card">Defense Contract Management Agency — administers contracts post-award</span></strong> or local contracting offices. The Admin DoDAAC ensures proper oversight and administration of DoD contracts after award.</p>
+          </div>
+        </div>
+        <div data-id="268" class="accordion-item">
+          <div data-id="269" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="270">6. Signal Code Combinations</span>
+            <i data-id="271" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="272" class="accordion-body">
+            <p data-id="273" class="text-sm mb-3" style="color: var(--text-secondary);"><strong data-id="274" class="tooltip-trigger">Signal Codes<span data-id="275" class="tooltip-card">Single-letter code defining ship-to and bill-to DoDAAC relationships per DLM 4000.25 Appendix 7.10</span></strong> (single letters A–Z) combine DoDAAC types to determine who pays and where to ship. They are a critical part of every requisition.</p>
+            <div data-id="276" class="overflow-x-auto rounded-lg">
+              <table data-id="277" class="w-full text-sm text-left">
+                <thead data-id="278"><tr data-id="279" style="background: var(--code-bg);"><th data-id="280" class="px-3 py-2 font-semibold" style="color: var(--text-muted);">Code</th><th data-id="281" class="px-3 py-2 font-semibold" style="color: var(--text-muted);">Ship-To</th><th data-id="282" class="px-3 py-2 font-semibold" style="color: var(--text-muted);">Bill-To</th><th data-id="283" class="px-3 py-2 font-semibold" style="color: var(--text-muted);">Description</th></tr></thead>
+                <tbody data-id="284">
+                  <tr data-id="285"><td data-id="286" class="px-3 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">A</td><td data-id="287" class="px-3 py-2">Requisitioner</td><td data-id="288" class="px-3 py-2">Requisitioner (rp 30-35)</td><td data-id="289" class="px-3 py-2">Standard self-funded</td></tr>
+                  <tr data-id="290" style="background: var(--table-alt);"><td data-id="291" class="px-3 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">B</td><td data-id="292" class="px-3 py-2">Requisitioner</td><td data-id="293" class="px-3 py-2">Supplementary Address (rp 45-50)</td><td data-id="294" class="px-3 py-2">Supp. address pays</td></tr>
+                  <tr data-id="295"><td data-id="296" class="px-3 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">J</td><td data-id="297" class="px-3 py-2">Supplementary Address</td><td data-id="298" class="px-3 py-2">Requisitioner (rp 30-35)</td><td data-id="299" class="px-3 py-2">Ship to supp. address; requisitioner pays</td></tr>
+                  <tr data-id="300" style="background: var(--table-alt);"><td data-id="301" class="px-3 py-2" style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">K</td><td data-id="302" class="px-3 py-2">Supplementary Address</td><td data-id="303" class="px-3 py-2">Supplementary Address (rp 45-50)</td><td data-id="304" class="px-3 py-2">Cross-funded, different ship &amp; bill</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div data-id="305" class="accordion-item">
+          <div data-id="306" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="307">7. Contractor DoDAAC (Air Force E-Prefix)</span>
+            <i data-id="308" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="309" class="accordion-body">
+            <p data-id="310" class="text-sm mb-3" style="color: var(--text-secondary);">Per AFMAN 23-230 Table 2.2, Air Force contractor DoDAACs use the <strong data-id="311">'E' prefix</strong> and are further categorized by sub-type:</p>
+            <ul data-id="312" class="text-sm space-y-2 mb-3" style="color: var(--text-secondary);">
+              <li data-id="313" class="flex items-start gap-2"><span data-id="314" class="field-badge flex-shrink-0 mt-0.5">EB</span><span data-id="315"><strong data-id="316">ICP (Inventory Control Point):</strong> Inventory location for customer shipments of Contractor ICP-managed material. NOT used for requisitioning.</span></li>
+              <li data-id="317" class="flex items-start gap-2"><span data-id="318" class="field-badge flex-shrink-0 mt-0.5">ED</span><span data-id="319"><strong data-id="320">Depot:</strong> Inventory location for Contractor ICP. NOT used for requisitioning.</span></li>
+              <li data-id="321" class="flex items-start gap-2"><span data-id="322" class="field-badge flex-shrink-0 mt-0.5">EJ</span><span data-id="323"><strong data-id="324">Aircraft Engines:</strong> Assigned to contractors performing new production and repair contracts for aircraft engines.</span></li>
+              <li data-id="325" class="flex items-start gap-2"><span data-id="326" class="field-badge flex-shrink-0 mt-0.5">EP</span><span data-id="327"><strong data-id="328">Fuels:</strong> Assigned to contractors requiring aviation fuels when producing, repairing, or testing Air Force aircraft.</span></li>
+              <li data-id="329" class="flex items-start gap-2"><span data-id="330" class="field-badge flex-shrink-0 mt-0.5">EY</span><span data-id="331"><strong data-id="332">Production, Manufacturing, R&amp;D, Test, ICS, CLS, TCT, O&amp;M Contracts:</strong> Broadest contractor category; covers production/manufacturing, R&amp;D, test, Interim Contractor Support (ICS), Contractor Logistics Support (CLS, EEIC 578), Total Contract Training (TCT), and Operations &amp; Maintenance contracts where GFE/GFP is involved.</span></li>
+            </ul>
+            <p data-id="333" class="text-sm" style="color: var(--text-secondary);">Contractor DoDAACs are managed by AFMC/AFSC and are tied to specific contract numbers. They cannot be used for general requisitioning. Authority Code is typically 07 (Administrative) or 05 (Non-Requisition). They are distinct from CAGE codes — a contractor may hold both a CAGE code (for contract identification) and a Contractor DoDAAC (for logistics/supply chain actions).</p>
+          </div>
+        </div>
+        <div data-id="334" class="accordion-item">
+          <div data-id="335" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="336">8. Training DoDAAC</span>
+            <i data-id="337" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="338" class="accordion-body">
+            <p data-id="339" class="text-sm" style="color: var(--text-secondary);">Used by schools, training detachments, and Professional Military Education (PME) institutions. Supports requisitioning of training aids, equipment, and supplies unique to educational missions. Interfaces with AETC systems and LIMS-EV.</p>
+          </div>
+        </div>
+        <div data-id="340" class="accordion-item">
+          <div data-id="341" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="342">9. Transportation DoDAAC</span>
+            <i data-id="343" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="344" class="accordion-body">
+            <p data-id="345" class="text-sm" style="color: var(--text-secondary);">Used by movement control units, freight offices, and transportation management offices (TMOs). Routes shipping transactions, freight bills, and GTC transactions through DAAS. Interfaces with GTN (Global Transportation Network) and DPS (Defense Personal Property System).</p>
+          </div>
+        </div>
+        <div data-id="346" class="accordion-item">
+          <div data-id="347" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="348">10. Depot / Maintenance DoDAAC</span>
+            <i data-id="349" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="350" class="accordion-body">
+            <p data-id="351" class="text-sm" style="color: var(--text-secondary);">Used by Air Logistics Complexes (ALCs), depots, and organic repair/overhaul facilities. Interfaces with AFMC, LMP, and D200 logistics systems for work orders and parts accountability. These DoDAACs carry high transaction volumes and are critical for depot-level maintenance scheduling and parts requisitioning.</p>
+          </div>
+        </div>
+        <div data-id="352" class="accordion-item">
+          <div data-id="353" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="354">11. Medical DoDAAC</span>
+            <i data-id="355" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="356" class="accordion-body">
+            <p data-id="357" class="text-sm" style="color: var(--text-secondary);">Used by Military Treatment Facilities (MTFs) and medical logistics activities. Interfaces with DMLSS (Defense Medical Logistics Standard Support) and DHA supply chains. Medical DoDAACs are managed under the Defense Health Agency and may have specialized supply routing for pharmaceuticals, medical devices, and blood products.</p>
+          </div>
+        </div>
+        <div data-id="358" class="accordion-item">
+          <div data-id="359" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="360">12. Research &amp; Development DoDAAC</span>
+            <i data-id="361" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="362" class="accordion-body">
+            <p data-id="363" class="text-sm" style="color: var(--text-secondary);">Assigned to AFRL, test centers (e.g., AFTC, AFOTEC), and developmental labs. Used for ordering specialized R&amp;D materials, test assets, and prototype components. These DoDAACs may interface with DTIC (Defense Technical Information Center) and specialized test center ERP systems.</p>
+          </div>
+        </div>
+        <div data-id="364" class="accordion-item">
+          <div data-id="365" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="366">13. National Guard / Reserve DoDAAC</span>
+            <i data-id="367" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="368" class="accordion-body">
+            <p data-id="369" class="text-sm" style="color: var(--text-secondary);">Used by Air National Guard (ANG) and Air Force Reserve Command (AFRC) units. May have different funding lines (O&amp;M vs. Title 32 funds) affecting signal code routing. When a Reserve/ANG unit is federalized (Title 10), funding and signal code logic may change — coordinate with both the state and federal resource management offices.</p>
+          </div>
+        </div>
+        <div data-id="370" class="accordion-item">
+          <div data-id="371" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="372">14. Non-Appropriated Fund (NAF) DoDAAC</span>
+            <i data-id="373" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="374" class="accordion-body">
+            <p data-id="375" class="text-sm" style="color: var(--text-secondary);">Used for AAFES, lodging, MWR, clubs, and other NAF activities. Funded outside appropriated funds — <strong data-id="376">cannot be used for APF (Appropriated Fund) purchases</strong> and cannot be mixed with APF funding lines. NAF DoDAACs use separate accounting systems and their own funding streams. Ensure the signal code does not route billing to an APF Bill-To DoDAAC.</p>
+          </div>
+        </div>
+        <div data-id="377" class="accordion-item">
+          <div data-id="378" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="379">15. Special Program DoDAAC</span>
+            <i data-id="380" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="381" class="accordion-body">
+            <p data-id="382" class="text-sm" style="color: var(--text-secondary);">Used for Special Access Programs (SAP), SCI, nuclear logistics, and other restricted programs. Access to these DoDAACs in DoDAAD may be restricted or require special clearance/permissions. These codes may not appear in standard DoDAAD queries — contact your Special Programs office or Security Manager for lookup assistance.</p>
+          </div>
+        </div>
+        <div data-id="383" class="accordion-item">
+          <div data-id="384" class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <span data-id="385">Signal Code + Authority Code Interaction</span>
+            <i data-id="386" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i>
+          </div>
+          <div data-id="387" class="accordion-body">
+            <p data-id="388" class="text-sm mb-3" style="color: var(--text-secondary);">When a DoDAAC has a non-standard Authority Code, signal codes must be selected carefully to avoid funding mismatches and transaction rejections:</p>
+            <ul data-id="389" class="text-sm space-y-2" style="color: var(--text-secondary);">
+              <li data-id="390" class="flex items-start gap-2"><i data-id="391" data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-warning)"></i><strong data-id="392">Authority Code 05 (Non-Requisition / Contractor)</strong> — Cannot initiate requisitions. Use only as Ship-To or Bill-To when designated by another activity's signal code.</li>
+              <li data-id="393" class="flex items-start gap-2"><i data-id="394" data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-warning)"></i><strong data-id="395">Authority Code 07 (Administrative)</strong> — Cannot requisition, ship-to, or bill-to. Information/identification only. Standard DAAS routing does not apply.</li>
+              <li data-id="396" class="flex items-start gap-2"><i data-id="397" data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-warning)"></i><strong data-id="398">Authority Code 06 (Free Issue)</strong> — Restricted to no-cost items. May only be used with Signal Code D or M. Never route billing through an APF Bill-To DoDAAC.</li>
+              <li data-id="399" class="flex items-start gap-2"><i data-id="400" data-lucide="alert-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-warning)"></i><strong data-id="401">Authority Code 03 (Do Not Ship-To)</strong> — Can requisition and bill, but cannot be a ship-to destination. Must use Signal Code J, K, L, M, or X when requisitioning.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: HOW TO REQUEST ========== -->
+    <section data-id="402" id="how-to-request" class="mb-16 reveal">
+      <h2 data-id="403" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="404" data-lucide="file-text" class="w-6 h-6"></i> How to Request a DoDAAC
+      </h2>
+      <div data-id="405" class="timeline-step">
+        <div data-id="406" class="step-number">1</div>
+        <div data-id="407" class="glass-card-static p-5">
+          <h3 data-id="408" class="font-bold text-base mb-2">Determine Eligibility</h3>
+          <p data-id="409" class="text-sm" style="color: var(--text-secondary);">Verify the requesting activity is a legitimate DoD organization. <strong data-id="410">Contractors CANNOT hold standard DoDAACs</strong> — they use CAGE codes (though Contractor DoDAACs with specific Authority Codes exist for specific logistics functions). The activity must have a documented mission requirement for ordering, receiving, or funding government supplies and services.</p>
+        </div>
+      </div>
+      <div data-id="411" class="timeline-step">
+        <div data-id="412" class="step-number">2</div>
+        <div data-id="413" class="glass-card-static p-5">
+          <h3 data-id="414" class="font-bold text-base mb-2">Gather Required Information</h3>
+          <div data-id="415" class="text-xs font-semibold mb-2" style="color: var(--accent-secondary);" id="checklist-progress-e5f6">0 of 7 items complete</div>
+          <div data-id="416" id="request-checklist-g7h8" class="space-y-1">
+            <div data-id="417" class="checklist-item" data-cl="req" data-idx="0"><input data-id="418" type="checkbox" id="req-cb-0" /><label data-id="419" for="req-cb-0" class="text-sm cursor-pointer">Activity name and official mailing address</label></div>
+            <div data-id="420" class="checklist-item" data-cl="req" data-idx="1"><input data-id="421" type="checkbox" id="req-cb-1" /><label data-id="422" for="req-cb-1" class="text-sm cursor-pointer">Commander/Director name and contact info</label></div>
+            <div data-id="423" class="checklist-item" data-cl="req" data-idx="2"><input data-id="424" type="checkbox" id="req-cb-2" /><label data-id="425" for="req-cb-2" class="text-sm cursor-pointer">Funding line / appropriation data (if bill-to)</label></div>
+            <div data-id="426" class="checklist-item" data-cl="req" data-idx="3"><input data-id="427" type="checkbox" id="req-cb-3" /><label data-id="428" for="req-cb-3" class="text-sm cursor-pointer">Parent UIC or higher headquarters DoDAAC</label></div>
+            <div data-id="429" class="checklist-item" data-cl="req" data-idx="4"><input data-id="430" type="checkbox" id="req-cb-4" /><label data-id="431" for="req-cb-4" class="text-sm cursor-pointer">POC name, DSN/commercial phone, and .mil email</label></div>
+            <div data-id="432" class="checklist-item" data-cl="req" data-idx="5"><input data-id="433" type="checkbox" id="req-cb-5" /><label data-id="434" for="req-cb-5" class="text-sm cursor-pointer">Justification for new DoDAAC (narrative)</label></div>
+            <div data-id="435" class="checklist-item" data-cl="req" data-idx="6"><input data-id="436" type="checkbox" id="req-cb-6" /><label data-id="437" for="req-cb-6" class="text-sm cursor-pointer">Supporting documentation (orders, activation memo, etc.)</label></div>
+          </div>
+          <button data-id="438" id="reset-req-cl-i9j0" class="mt-3 text-xs font-semibold px-3 py-1.5 rounded-lg transition" style="color: var(--accent-secondary); background: var(--nav-active-bg);">Reset Checklist</button>
+        </div>
+      </div>
+      <div data-id="439" class="timeline-step">
+        <div data-id="440" class="step-number">3</div>
+        <div data-id="441" class="glass-card-static p-5">
+          <h3 data-id="442" class="font-bold text-base mb-3">Submit via the Correct Channel</h3>
+          <div data-id="443" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div data-id="444" class="p-3 rounded-lg" style="background: var(--info-bg); border: 1px solid var(--info-border);"><div data-id="445" class="font-semibold text-sm">Army</div><p data-id="446" class="text-xs mt-1" style="color: var(--text-secondary);">Submit through G4/Logistics Officer to Army DoDAAC Manager at HRC or LOGSA.</p></div>
+            <div data-id="447" class="p-3 rounded-lg" style="background: var(--info-bg); border: 1px solid var(--info-border);"><div data-id="448" class="font-semibold text-sm">Navy</div><p data-id="449" class="text-xs mt-1" style="color: var(--text-secondary);">Submit via N4/N6 to NAVSUP BSC DoDAAC Program Office.</p></div>
+            <div data-id="450" class="p-3 rounded-lg" style="background: var(--info-bg); border: 1px solid var(--info-border);"><div data-id="451" class="font-semibold text-sm">Air Force</div><p data-id="452" class="text-xs mt-1" style="color: var(--text-secondary);">Submit through A4 to AFMC/AFSC DoDAAC Manager.</p></div>
+            <div data-id="453" class="p-3 rounded-lg" style="background: var(--info-bg); border: 1px solid var(--info-border);"><div data-id="454" class="font-semibold text-sm">DLA</div><p data-id="455" class="text-xs mt-1" style="color: var(--text-secondary);">Submit via DLA Enterprise DoDAAC Management (DEDM) system.</p></div>
+            <div data-id="456" class="p-3 rounded-lg md:col-span-2" style="background: var(--info-bg); border: 1px solid var(--info-border);"><div data-id="457" class="font-semibold text-sm">Other Agencies</div><p data-id="458" class="text-xs mt-1" style="color: var(--text-secondary);">Contact <a data-id="459" href="https://home.daas.dla.mil/daashome/homepage.asp" target="_blank" rel="noopener noreferrer" class="ext-link">DLA Transaction Services</a> — the central DoDAAC registry authority for all other DoD components.</p></div>
+          </div>
+        </div>
+      </div>
+      <div data-id="460" class="timeline-step">
+        <div data-id="461" class="step-number">4</div>
+        <div data-id="462" class="glass-card-static p-5">
+          <h3 data-id="463" class="font-bold text-base mb-2">Processing &amp; Approval</h3>
+          <p data-id="464" class="text-sm" style="color: var(--text-secondary);">Standard processing: <strong data-id="465">3–5 business days</strong>. Expedited requests are available with commander justification. <a data-id="466" href="https://home.daas.dla.mil/daashome/homepage.asp" target="_blank" rel="noopener noreferrer" class="ext-link">DLA Transaction Services</a> assigns the 6-character code and loads it into the DODAAD database. You'll receive notification upon assignment.</p>
+        </div>
+      </div>
+      <div data-id="467" class="timeline-step">
+        <div data-id="468" class="step-number">5</div>
+        <div data-id="469" class="glass-card-static p-5">
+          <h3 data-id="470" class="font-bold text-base mb-2">Activation &amp; Verification</h3>
+          <p data-id="471" class="text-sm" style="color: var(--text-secondary);">After assignment: verify your DoDAAC in <a data-id="472" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link">PIEE/WAWF</a> within <strong data-id="473">24–48 hours</strong>. Request system access for authorized users. Coordinate with your Finance/Resource Management office to link to funding lines (LOA).</p>
+        </div>
+      </div>
+      <div data-id="474" class="timeline-step">
+        <div data-id="475" class="step-number">6</div>
+        <div data-id="476" class="glass-card-static p-5">
+          <h3 data-id="477" class="font-bold text-base mb-2">Annual Validation</h3>
+          <p data-id="478" class="text-sm" style="color: var(--text-secondary);">DoDAACs must be validated annually (typically in Q4 of the fiscal year, July–September). Inactive DoDAACs may be suspended or deactivated. Suspensions require a reactivation memo signed by the Commander/Director.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6: LOOKUP & VALIDATION ========== -->
+    <section data-id="479" id="lookup-validation" class="mb-16 reveal">
+      <h2 data-id="480" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="481" data-lucide="search" class="w-6 h-6"></i> Lookup &amp; Validation
+      </h2>
+
+      <h3 data-id="482" class="font-bold text-base mb-4">Official Lookup Methods</h3>
+
+      <div data-id="483" class="glass-card-static p-5 md:p-6 mb-4">
+        <div data-id="484" class="flex items-center gap-3 mb-3">
+          <div data-id="485" class="method-number">1</div>
+          <div data-id="486">
+            <h4 data-id="487" class="font-bold text-sm">DoDAAD Simple Search (DAASINQ)</h4>
+            <span data-id="488" class="text-xs" style="color: var(--text-muted);">Authoritative DoD Directory</span>
+          </div>
+          <span data-id="489" class="badge-green ml-auto">No CAC Required for Basic Search</span>
+        </div>
+        <a data-id="490" href="https://home.daas.dla.mil/eDoDAAD/s_search/search_menu.asp" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-3 inline-block" style="font-family: 'JetBrains Mono', monospace;">home.daas.dla.mil/eDoDAAD/s_search/search_menu.asp</a>
+        <p data-id="491" class="text-sm mb-3" style="color: var(--text-secondary);">The authoritative DoD directory for all DoDAAC lookups. No CAC required for basic search. Search by DoDAAC code, unit name, city/base, Authority Code, or TAC type. Managed by DLA Transaction Services.</p>
+        <div data-id="492" class="flex flex-wrap gap-1.5">
+          <span data-id="493" class="field-badge">DoDAAC</span>
+          <span data-id="494" class="field-badge">Unit Name</span>
+          <span data-id="495" class="field-badge">City/Base</span>
+          <span data-id="496" class="field-badge">Authority Code</span>
+          <span data-id="497" class="field-badge">TAC Type</span>
+        </div>
+      </div>
+
+      <div data-id="498" class="glass-card-static p-5 md:p-6 mb-4">
+        <div data-id="499" class="flex items-center gap-3 mb-3">
+          <div data-id="500" class="method-number">2</div>
+          <div data-id="501">
+            <h4 data-id="502" class="font-bold text-sm">AF DoDAAC Web Management System (WMS)</h4>
+            <span data-id="503" class="text-xs" style="color: var(--text-muted);">Air Force-specific DoDAAC Management</span>
+          </div>
+          <span data-id="504" class="badge-amber ml-auto">CAC Required</span>
+        </div>
+        <span data-id="505" class="text-xs mb-3 inline-block" style="font-family: 'JetBrains Mono', monospace; color: var(--text-muted);">Access via AF Portal / CAC required — <a data-id="506" href="https://dodaac.cce.af.mil/" target="_blank" rel="noopener noreferrer" class="ext-link">dodaac.cce.af.mil</a></span>
+        <p data-id="507" class="text-sm mb-3" style="color: var(--text-secondary);">Air Force-specific system for managing and viewing DoDAAC records. Requires CAC and appropriate permissions. Shows full record detail including Authority Code, TAC addresses, unit POC, MAJCOM owner, status (Active/Inactive), full address, and contracting flags.</p>
+        <div data-id="508" class="flex flex-wrap gap-1.5">
+          <span data-id="509" class="field-badge">Authority Code</span>
+          <span data-id="510" class="field-badge">TAC 1-4</span>
+          <span data-id="511" class="field-badge">Unit POC</span>
+          <span data-id="512" class="field-badge">MAJCOM Owner</span>
+          <span data-id="513" class="field-badge">Status</span>
+          <span data-id="514" class="field-badge">Full Address</span>
+          <span data-id="515" class="field-badge">Procurement Flag</span>
+        </div>
+      </div>
+
+      <div data-id="516" class="glass-card-static p-5 md:p-6 mb-6">
+        <div data-id="517" class="flex items-center gap-3 mb-3">
+          <div data-id="518" class="method-number">3</div>
+          <div data-id="519">
+            <h4 data-id="520" class="font-bold text-sm">Component ERP Systems (DEAMS, SBSS, ESS, LOGMOD)</h4>
+            <span data-id="521" class="text-xs" style="color: var(--text-muted);">Financial &amp; Logistics Context</span>
+          </div>
+          <span data-id="522" class="badge-amber ml-auto">Requires System Access</span>
+        </div>
+        <p data-id="523" class="text-sm mb-3" style="color: var(--text-secondary);">DoDAACs are also accessible within Air Force and DoD ERP systems where they are tied to fund codes, Budget Program Numbers (BPN), MAPAC codes, and Routing Identifier Codes (RICs). Use these systems when you need the DoDAAC in the context of a financial transaction or logistics action.</p>
+        <div data-id="524" class="flex flex-wrap gap-1.5 mb-3">
+          <span data-id="525" class="field-badge">DEAMS</span>
+          <span data-id="526" class="field-badge">SBSS</span>
+          <span data-id="527" class="field-badge">ESS</span>
+          <span data-id="528" class="field-badge">LOGMOD</span>
+          <span data-id="529" class="field-badge">D200</span>
+          <span data-id="530" class="field-badge">LMP</span>
+          <span data-id="531" class="field-badge">GCSS-Army</span>
+        </div>
+        <div data-id="532" class="info-box text-xs" style="color: var(--text-secondary);">
+          <strong data-id="533" style="color: var(--accent-primary);">Tied to:</strong> Fund Codes, BPN, MAPAC, Routing Identifier Codes (RICs), Financial Responsibility
+        </div>
+      </div>
+
+      <h3 data-id="534" class="font-bold text-base mb-3">Validation Checklist</h3>
+      <div data-id="535" class="glass-card-static p-5 mb-4">
+        <div data-id="536" class="text-xs font-semibold mb-2" style="color: var(--accent-secondary);" id="val-checklist-progress-k1l2">0 of 8 items complete</div>
+        <div data-id="537" id="val-checklist-m3n4" class="space-y-1">
+          <div data-id="538" class="checklist-item" data-cl="val" data-idx="0"><input data-id="539" type="checkbox" id="val-cb-0" /><label data-id="540" for="val-cb-0" class="text-sm cursor-pointer">DoDAAC is 6 characters, alphanumeric</label></div>
+          <div data-id="541" class="checklist-item" data-cl="val" data-idx="1"><input data-id="542" type="checkbox" id="val-cb-1" /><label data-id="543" for="val-cb-1" class="text-sm cursor-pointer">First character matches expected service/agency prefix</label></div>
+          <div data-id="544" class="checklist-item" data-cl="val" data-idx="2"><input data-id="545" type="checkbox" id="val-cb-2" /><label data-id="546" for="val-cb-2" class="text-sm cursor-pointer">DoDAAC appears active (not suspended) in DODAAD</label></div>
+          <div data-id="547" class="checklist-item" data-cl="val" data-idx="3"><input data-id="548" type="checkbox" id="val-cb-3" /><label data-id="549" for="val-cb-3" class="text-sm cursor-pointer">Ship-to address (TAC 2) is complete and verified</label></div>
+          <div data-id="550" class="checklist-item" data-cl="val" data-idx="4"><input data-id="551" type="checkbox" id="val-cb-4" /><label data-id="552" for="val-cb-4" class="text-sm cursor-pointer">Bill-to DoDAAC is funded for current FY</label></div>
+          <div data-id="553" class="checklist-item" data-cl="val" data-idx="5"><input data-id="554" type="checkbox" id="val-cb-5" /><label data-id="555" for="val-cb-5" class="text-sm cursor-pointer">POC information is current</label></div>
+          <div data-id="556" class="checklist-item" data-cl="val" data-idx="6"><input data-id="557" type="checkbox" id="val-cb-6" /><label data-id="558" for="val-cb-6" class="text-sm cursor-pointer">Authority Code matches the intended capabilities (00=full, 01=ship-to only, 02=bill-to only, etc.)</label></div>
+          <div data-id="559" class="checklist-item" data-cl="val" data-idx="7"><input data-id="560" type="checkbox" id="val-cb-7" /><label data-id="561" for="val-cb-7" class="text-sm cursor-pointer">TAC addresses (1-4) are loaded correctly for the activity's function</label></div>
+        </div>
+        <button data-id="562" id="reset-val-cl-o5p6" class="mt-3 text-xs font-semibold px-3 py-1.5 rounded-lg transition" style="color: var(--accent-secondary); background: var(--nav-active-bg);">Reset Checklist</button>
+      </div>
+
+      <div data-id="563" class="warning-box">
+        <div data-id="564" class="flex items-center gap-2 mb-2">
+          <i data-id="565" data-lucide="alert-triangle" class="w-5 h-5 flex-shrink-0" style="color: var(--color-warning)"></i>
+          <span data-id="566" class="font-bold text-sm">Common Lookup Errors</span>
+        </div>
+        <ul data-id="567" class="text-sm space-y-2" style="color: var(--text-secondary);">
+          <li data-id="568"><strong data-id="569">"Invalid DoDAAC"</strong> — Code not in DODAAD; may be deactivated or a typo. Verify all 6 characters.</li>
+          <li data-id="570"><strong data-id="571">"Suspended DoDAAC"</strong> — Reactivation required; contact your Component DoDAAC Manager.</li>
+          <li data-id="572"><strong data-id="573">"Address Not Found"</strong> — TAC 2 (Ship-to) address missing from DODAAD; submit an update request.</li>
+          <li data-id="574"><strong data-id="575">"Authority Code Mismatch"</strong> — DoDAAC exists but Authority Code doesn't support the requested function; contact your DoDAAC Manager to verify or update.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 7: TROUBLESHOOTING ========== -->
+    <section data-id="576" id="troubleshooting" class="mb-16 reveal">
+      <h2 data-id="577" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="578" data-lucide="alert-triangle" class="w-6 h-6"></i> Troubleshooting
+      </h2>
+      <div data-id="579" class="glass-card-static p-4 md:p-6" id="troubleshooting-accordion-q7r8">
+        <div data-id="580" class="accordion-item open">
+          <div data-id="581" class="accordion-header" role="button" tabindex="0" aria-expanded="true"><span data-id="582">My DoDAAC shows as "Suspended" in WAWF</span><i data-id="583" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="584" class="accordion-body"><p data-id="585" class="text-sm" style="color: var(--text-secondary);">Contact your Component DoDAAC Manager with a <strong data-id="586">Reactivation Request memo</strong> signed by the Commander/Director. Include justification and updated POC info. Processing takes <strong data-id="587">3–5 business days</strong>. Ensure your annual validation was completed — suspensions are most commonly caused by missed annual reviews.</p></div>
+        </div>
+        <div data-id="588" class="accordion-item">
+          <div data-id="589" class="accordion-header" role="button" tabindex="0" aria-expanded="false"><span data-id="590">I received a shipment with the wrong DoDAAC</span><i data-id="591" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="592" class="accordion-body"><p data-id="593" class="text-sm" style="color: var(--text-secondary);"><strong data-id="594">Do not refuse the shipment.</strong> Document the discrepancy on the receiving report. Contact your supply NCO/officer and the contracting officer. Submit a corrected receiving report in <a data-id="595" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link">WAWF</a> if applicable. The discrepancy may stem from a Signal Code error on the original requisition.</p></div>
+        </div>
+        <div data-id="596" class="accordion-item">
+          <div data-id="597" class="accordion-header" role="button" tabindex="0" aria-expanded="false"><span data-id="598">My DoDAAC is not recognized in PIEE/WAWF</span><i data-id="599" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="600" class="accordion-body"><p data-id="601" class="text-sm" style="color: var(--text-secondary);">New DoDAACs can take <strong data-id="602">24–72 hours</strong> to propagate to all systems after assignment. If the issue persists after 72 hours, contact the <a data-id="603" href="https://www.dla.mil/Customer-Support/" target="_blank" rel="noopener noreferrer" class="ext-link">DLA Customer Support</a> with your DoDAAC assignment confirmation.</p></div>
+        </div>
+        <div data-id="604" class="accordion-item">
+          <div data-id="605" class="accordion-header" role="button" tabindex="0" aria-expanded="false"><span data-id="606">I need to update my ship-to address</span><i data-id="607" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="608" class="accordion-body"><p data-id="609" class="text-sm" style="color: var(--text-secondary);">Submit a <strong data-id="610">DoDAAC Update Request</strong> through your Component DoDAAC Manager. Include the new TAC 2 (freight) address, effective date, and commander signature. Updates reflect in DODAAD within <strong data-id="611">2–3 business days</strong>. Ensure all downstream systems (GCSS-Army, LMP, etc.) also update.</p></div>
+        </div>
+        <div data-id="612" class="accordion-item">
+          <div data-id="613" class="accordion-header" role="button" tabindex="0" aria-expanded="false"><span data-id="614">Multiple activities share a DoDAAC — is this allowed?</span><i data-id="615" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="616" class="accordion-body"><p data-id="617" class="text-sm" style="color: var(--text-secondary);"><strong data-id="618">Generally no.</strong> Each distinct activity requiring separate ordering, billing, or shipping should have its own DoDAAC. Shared DoDAACs can cause accountability and audit issues, complicate property tracking, and create invoice routing problems. Request separate codes through your DoDAAC Manager.</p></div>
+        </div>
+        <div data-id="619" class="accordion-item">
+          <div data-id="620" class="accordion-header" role="button" tabindex="0" aria-expanded="false"><span data-id="621">My DoDAAC was deactivated during the annual review</span><i data-id="622" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="623" class="accordion-body"><p data-id="624" class="text-sm" style="color: var(--text-secondary);">If the activity is still operational, submit a <strong data-id="625">Reactivation Request</strong> immediately with updated information. If the activity was deactivated in error, escalate to your Component Program Manager. Provide documentation of ongoing missions and current operational status.</p></div>
+        </div>
+        <div data-id="626" class="accordion-item">
+          <div data-id="627" class="accordion-header" role="button" tabindex="0" aria-expanded="false"><span data-id="628">Contractor keeps asking for my DoDAAC — should I share it?</span><i data-id="629" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="630" class="accordion-body"><p data-id="631" class="text-sm" style="color: var(--text-secondary);"><strong data-id="632">Yes</strong> — DoDAACs on active contracts are not classified. Contractors need your Ship-To and Bill-To DoDAACs to correctly fill out invoices in <a data-id="633" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link">WAWF</a> and shipping documents. <strong data-id="634">Never</strong> provide your DoDAAC for activities outside the scope of the contract.</p></div>
+        </div>
+        <div data-id="635" class="accordion-item">
+          <div data-id="636" class="accordion-header" role="button" tabindex="0" aria-expanded="false"><span data-id="637">How do I request a DoDAAC for a deployed/contingency unit?</span><i data-id="638" data-lucide="chevron-down" class="w-5 h-5 accordion-chevron"></i></div>
+          <div data-id="639" class="accordion-body"><p data-id="640" class="text-sm" style="color: var(--text-secondary);">Contingency DoDAACs follow the same process but may be <strong data-id="641">expedited</strong>. Contact your Theater Sustainment Command J4 or equivalent. Temporary/exercise DoDAACs can also be issued for training events. Ensure the deployed unit's APO/FPO address is loaded into DODAAD.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 8: REFERENCE TABLES ========== -->
+    <section data-id="642" id="reference-tables" class="mb-16 reveal">
+      <h2 data-id="643" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="644" data-lucide="table-2" class="w-6 h-6"></i> Reference Tables
+      </h2>
+
+      <div data-id="645" class="glass-card-static p-5 md:p-6 mb-6">
+        <h3 data-id="646" class="font-bold text-base mb-2">Service / Agency Prefix Codes</h3>
+        <p data-id="647" class="text-xs mb-3" style="color: var(--text-secondary);">First-position prefix letter(s) indicate the Service or Agency that owns the DoDAAC. Assignment is governed by DLM 4000.25, Volume 2, Appendix 7.2 and the DoDAAD Series Table. Note: "C" is Army Contractor, NOT Coast Guard. Coast Guard (USCG) DoDAACs fall under DHS and use the DHS federal series.</p>
+        <div data-id="648" class="flex items-center gap-2 mb-3 flex-wrap">
+          <div data-id="649" class="relative flex-1 max-w-xs">
+            <i data-id="650" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+            <input data-id="651" type="text" id="prefix-table-search-s9t0" placeholder="Filter table..." class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400/30" style="background: var(--bg-card); border-color: var(--border-subtle); color: var(--text-primary);" />
+          </div>
+          <span data-id="652" class="verified-badge">✓ Verified: AFMAN 23-230 / DLM 4000.25</span>
+        </div>
+        <div data-id="653" class="text-xs mb-2" style="color: var(--text-muted);" id="prefix-table-count-u1v2">Showing 16 of 16 rows</div>
+        <div data-id="654" class="overflow-x-auto rounded-xl">
+          <table data-id="655" class="w-full text-sm text-left" id="prefix-table-w3x4">
+            <thead data-id="656">
+              <tr data-id="657" style="background: var(--code-bg);">
+                <th data-id="658" class="px-4 py-2.5 font-semibold sortable-th whitespace-nowrap" data-sort="prefix" data-table="prefix" style="color: var(--text-muted);">Prefix <i data-id="659" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="660" class="px-4 py-2.5 font-semibold sortable-th" data-sort="service" data-table="prefix" style="color: var(--text-muted);">Service / Agency <i data-id="661" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="662" class="px-4 py-2.5 font-semibold sortable-th" data-sort="contact" data-table="prefix" style="color: var(--text-muted);">Primary DoDAAC Manager <i data-id="663" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="664" class="px-4 py-2.5 font-semibold" style="color: var(--text-muted);">Notes</th>
+              </tr>
+            </thead>
+            <tbody data-id="665" id="prefix-table-body-y5z6"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div data-id="666" class="glass-card-static p-5 md:p-6 mb-6">
+        <h3 data-id="667" class="font-bold text-base mb-3">Signal Code Reference</h3>
+        <div data-id="668" class="flex items-center gap-2 mb-3 flex-wrap">
+          <div data-id="669" class="relative flex-1 max-w-xs">
+            <i data-id="670" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+            <input data-id="671" type="text" id="signal-table-search-a7b8" placeholder="Filter table..." class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400/30" style="background: var(--bg-card); border-color: var(--border-subtle); color: var(--text-primary);" />
+          </div>
+          <span data-id="672" class="verified-badge">✓ Verified: DLM 4000.25</span>
+        </div>
+        <div data-id="673" class="text-xs mb-2" style="color: var(--text-muted);" id="signal-table-count-c9d0">Showing 8 of 8 rows</div>
+        <div data-id="674" class="overflow-x-auto rounded-xl">
+          <table data-id="675" class="w-full text-sm text-left" id="signal-table-e1f2">
+            <thead data-id="676">
+              <tr data-id="677" style="background: var(--code-bg);">
+                <th data-id="678" class="px-4 py-2.5 font-semibold sortable-th whitespace-nowrap" data-sort="code" data-table="signal" style="color: var(--text-muted);">Signal Code <i data-id="679" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="680" class="px-4 py-2.5 font-semibold sortable-th" data-sort="shipto" data-table="signal" style="color: var(--text-muted);">Ship-To <i data-id="681" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="682" class="px-4 py-2.5 font-semibold sortable-th" data-sort="billto" data-table="signal" style="color: var(--text-muted);">Bill-To <i data-id="683" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="684" class="px-4 py-2.5 font-semibold sortable-th" data-sort="markfor" data-table="signal" style="color: var(--text-muted);">Supplementary Address Used? <i data-id="685" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="686" class="px-4 py-2.5 font-semibold" style="color: var(--text-muted);">Common Use Case</th>
+              </tr>
+            </thead>
+            <tbody data-id="687" id="signal-table-body-g3h4"></tbody>
+          </table>
+        </div>
+        <p data-id="688" class="text-xs mt-3 italic" style="color: var(--text-muted);">Per DLM 4000.25 Appendix 7.10. "Supplementary Address" (rp 45-50) is the formal term; "Mark-For" is commonly used informally in units to refer to this field.</p>
+      </div>
+
+      <div data-id="689" class="glass-card-static p-5 md:p-6 mb-6">
+        <h3 data-id="690" class="font-bold text-base mb-2">DoDAAC Authority Codes — Per DLM 4000.25, Vol. 6</h3>
+        <p data-id="691" class="text-xs mb-3" style="color: var(--text-secondary);">Authority Codes define what a DoDAAC is authorized to do within the DoD logistics system. These are numeric codes, NOT alphabetic. Source: DLM 4000.25, Volume 6 (DoDAAD Tables, Codes, and Rules).</p>
+        <div data-id="692" class="flex items-center gap-2 mb-3 flex-wrap">
+          <div data-id="693" class="relative flex-1 max-w-xs">
+            <i data-id="694" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+            <input data-id="695" type="text" id="auth-table-search-q1w2" placeholder="Filter table..." class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400/30" style="background: var(--bg-card); border-color: var(--border-subtle); color: var(--text-primary);" />
+          </div>
+          <span data-id="696" class="verified-badge">✓ Verified: DLM 4000.25</span>
+        </div>
+        <div data-id="697" class="text-xs mb-2" style="color: var(--text-muted);" id="auth-table-count-e3r4">Showing 8 of 8 rows</div>
+        <div data-id="698" class="overflow-x-auto rounded-xl">
+          <table data-id="699" class="w-full text-sm text-left" id="auth-table-t5y6">
+            <thead data-id="700">
+              <tr data-id="701" style="background: var(--code-bg);">
+                <th data-id="702" class="px-4 py-2.5 font-semibold sortable-th whitespace-nowrap" data-sort="authcode" data-table="auth" style="color: var(--text-muted);">Code <i data-id="703" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="704" class="px-4 py-2.5 font-semibold sortable-th" data-sort="authdesc" data-table="auth" style="color: var(--text-muted);">Name <i data-id="705" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="706" class="px-4 py-2.5 font-semibold sortable-th" data-sort="canreq" data-table="auth" style="color: var(--text-muted);">Can Requisition? <i data-id="707" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="708" class="px-4 py-2.5 font-semibold sortable-th" data-sort="canship" data-table="auth" style="color: var(--text-muted);">Can Ship-To? <i data-id="709" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="710" class="px-4 py-2.5 font-semibold sortable-th" data-sort="canbill" data-table="auth" style="color: var(--text-muted);">Can Bill-To? <i data-id="711" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="712" class="px-4 py-2.5 font-semibold" style="color: var(--text-muted);">Key Restriction</th>
+              </tr>
+            </thead>
+            <tbody data-id="713" id="auth-table-body-u7i8"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div data-id="714" class="glass-card-static p-5 md:p-6">
+        <h3 data-id="715" class="font-bold text-base mb-2">DoDAAD Functional Flags &amp; Domain Indicators — Per DLM 4000.25</h3>
+        <p data-id="716" class="text-xs mb-3" style="color: var(--text-secondary);">In DoDAAD, a DoDAAC's functional role is determined by its Authority Code (what it can do) combined with Type of Address Codes (TACs) and domain-specific flags. The following flags indicate special functional designations within DoDAAD. Source: DLM 4000.25 / AFMAN 23-230.</p>
+        <div data-id="717" class="flex items-center gap-2 mb-3 flex-wrap">
+          <div data-id="718" class="relative flex-1 max-w-xs">
+            <i data-id="719" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+            <input data-id="720" type="text" id="purpose-table-search-o9p0" placeholder="Filter table..." class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400/30" style="background: var(--bg-card); border-color: var(--border-subtle); color: var(--text-primary);" />
+          </div>
+          <span data-id="721" class="verified-badge">✓ Verified: AFMAN 23-230 / DLM 4000.25</span>
+        </div>
+        <div data-id="722" class="text-xs mb-2" style="color: var(--text-muted);" id="purpose-table-count-a1s2">Showing 7 of 7 rows</div>
+        <div data-id="723" class="overflow-x-auto rounded-xl">
+          <table data-id="724" class="w-full text-sm text-left" id="purpose-table-d3f4">
+            <thead data-id="725">
+              <tr data-id="726" style="background: var(--code-bg);">
+                <th data-id="727" class="px-4 py-2.5 font-semibold sortable-th whitespace-nowrap" data-sort="purcode" data-table="purpose" style="color: var(--text-muted);">Flag / Indicator <i data-id="728" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="729" class="px-4 py-2.5 font-semibold sortable-th" data-sort="purfunc" data-table="purpose" style="color: var(--text-muted);">Description <i data-id="730" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="731" class="px-4 py-2.5 font-semibold sortable-th" data-sort="pursys" data-table="purpose" style="color: var(--text-muted);">System Impact <i data-id="732" data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i></th>
+                <th data-id="733" class="px-4 py-2.5 font-semibold" style="color: var(--text-muted);">Notes</th>
+              </tr>
+            </thead>
+            <tbody data-id="734" id="purpose-table-body-g5h6"></tbody>
+          </table>
+        </div>
+        <p data-id="735" class="text-xs mt-3 italic" style="color: var(--text-muted);">Note: The "Purpose Code" terminology used informally in some units refers to the combination of Authority Code + TAC flags + Procurement Authority flag — not a separate numbered field. For Air Force-specific DoDAAC type codes (EB, ED, EJ, EP, EY), see AFMAN 23-230 Table 2.2.</p>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 9: GLOSSARY ========== -->
+    <section data-id="736" id="glossary" class="mb-16 reveal">
+      <h2 data-id="737" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="738" data-lucide="book-open" class="w-6 h-6"></i> Glossary
+      </h2>
+      <div data-id="739" class="glass-card-static p-5 md:p-6">
+        <div data-id="740" class="flex flex-wrap gap-1 mb-4" id="az-bar-i5j6"></div>
+        <div data-id="741" class="relative mb-4 max-w-xs">
+          <i data-id="742" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"></i>
+          <input data-id="743" type="text" id="glossary-search-k7l8" placeholder="Search glossary..." class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400/30" style="background: var(--bg-card); border-color: var(--border-subtle); color: var(--text-primary);" />
+        </div>
+        <div data-id="744" id="glossary-entries-m9n0" class="space-y-0"></div>
+        <div data-id="745" id="glossary-empty-o1p2" class="hidden text-center py-8" style="color: var(--text-muted);">
+          <i data-id="746" data-lucide="search-x" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
+          <p data-id="747">No glossary terms match your search.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 10: RESOURCES ========== -->
+    <section data-id="748" id="resources" class="mb-12 reveal">
+      <h2 data-id="749" class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--accent-primary);">
+        <i data-id="750" data-lucide="external-link" class="w-6 h-6"></i> Resources
+      </h2>
+      <div data-id="751" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div data-id="752" class="glass-card resource-card p-5">
+          <div data-id="753" class="flex items-center gap-2 mb-2"><i data-id="754" data-lucide="building-2" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="755" class="font-bold text-sm">DLA Transaction Services</span></div>
+          <a data-id="756" href="https://home.daas.dla.mil/daashome/homepage.asp" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">home.daas.dla.mil/daashome/homepage.asp</a>
+          <p data-id="757" class="text-xs mb-3" style="color: var(--text-secondary);">Central DoDAAC registry authority. Use for DODAAD lookups and DoDAAC submissions.</p>
+          <a data-id="758" href="https://home.daas.dla.mil/daashome/homepage.asp" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="759" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="760" class="glass-card resource-card p-5">
+          <div data-id="761" class="flex items-center gap-2 mb-2"><i data-id="762" data-lucide="shield-check" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="763" class="font-bold text-sm">PIEE Portal</span></div>
+          <a data-id="764" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">piee.eb.mil</a>
+          <p data-id="765" class="text-xs mb-3" style="color: var(--text-secondary);">Manage DoDAAC records, user access, and procurement activities. CAC required.</p>
+          <a data-id="766" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="767" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="768" class="glass-card resource-card p-5">
+          <div data-id="769" class="flex items-center gap-2 mb-2"><i data-id="770" data-lucide="file-check" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="771" class="font-bold text-sm">WAWF / Wide Area Workflow (via PIEE)</span></div>
+          <a data-id="772" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">piee.eb.mil</a>
+          <p data-id="773" class="text-xs mb-3" style="color: var(--text-secondary);">WAWF is now a module inside PIEE. Electronic invoicing and DoDAAC validation. CAC required.</p>
+          <a data-id="774" href="https://piee.eb.mil" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="775" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="776" class="glass-card resource-card p-5">
+          <div data-id="777" class="flex items-center gap-2 mb-2"><i data-id="778" data-lucide="scale" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="779" class="font-bold text-sm">DFARS / FAR Reference</span></div>
+          <a data-id="780" href="https://www.acquisition.gov" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">acquisition.gov</a>
+          <p data-id="781" class="text-xs mb-3" style="color: var(--text-secondary);">Regulations governing DoDAAC use in contracting.</p>
+          <a data-id="782" href="https://www.acquisition.gov" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="783" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="784" class="glass-card resource-card p-5">
+          <div data-id="785" class="flex items-center gap-2 mb-2"><i data-id="786" data-lucide="landmark" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="787" class="font-bold text-sm">DoD FMR</span></div>
+          <a data-id="788" href="https://comptroller.war.gov/FMR/VolChap.aspx" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">comptroller.war.gov/FMR/VolChap.aspx</a>
+          <p data-id="789" class="text-xs mb-3" style="color: var(--text-secondary);">Financial Management Regulation — covers DoDAAC use in funding and accounting.</p>
+          <a data-id="790" href="https://comptroller.war.gov/FMR/VolChap.aspx" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="791" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="792" class="glass-card resource-card p-5">
+          <div data-id="793" class="flex items-center gap-2 mb-2"><i data-id="794" data-lucide="book-marked" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="795" class="font-bold text-sm">AR 725-50</span></div>
+          <a data-id="796" href="https://armypubs.army.mil/epubs/DR_pubs/DR_a/pdf/web/r725_50.pdf" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">armypubs.army.mil/epubs/.../r725_50.pdf</a>
+          <p data-id="797" class="text-xs mb-3" style="color: var(--text-secondary);">Army supply requisition policy including DoDAAC requirements.</p>
+          <a data-id="798" href="https://armypubs.army.mil/epubs/DR_pubs/DR_a/pdf/web/r725_50.pdf" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="799" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="800" class="glass-card resource-card p-5">
+          <div data-id="801" class="flex items-center gap-2 mb-2"><i data-id="802" data-lucide="headset" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="803" class="font-bold text-sm">DLA Help Desk</span></div>
+          <a data-id="804" href="https://www.dla.mil/Customer-Support/" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">dla.mil/Customer-Support</a>
+          <p data-id="805" class="text-xs mb-3" style="color: var(--text-secondary);">For DoDAAC system issues and escalations.</p>
+          <a data-id="806" href="https://www.dla.mil/Customer-Support/" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="807" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="808" class="glass-card resource-card p-5">
+          <div data-id="809" class="flex items-center gap-2 mb-2"><i data-id="810" data-lucide="book-open-check" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="811" class="font-bold text-sm">AFMAN 23-230</span></div>
+          <a data-id="812" href="https://www.e-publishing.af.mil/Product-Index/#/?view=pubs&orgID=10141&catID=1&series=11&modID=449&tabID=131" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">e-publishing.af.mil</a>
+          <p data-id="813" class="text-xs mb-3" style="color: var(--text-secondary);">Air Force supply chain management manual governing DoDAAC procedures for Air Force activities.</p>
+          <a data-id="814" href="https://www.e-publishing.af.mil/Product-Index/#/?view=pubs&orgID=10141&catID=1&series=11&modID=449&tabID=131" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="815" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="816" class="glass-card resource-card p-5">
+          <div data-id="817" class="flex items-center gap-2 mb-2"><i data-id="818" data-lucide="library" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="819" class="font-bold text-sm">DLM 4000.25</span></div>
+          <a data-id="820" href="https://www.dla.mil/Defense-Data-Standards/Publications/" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">dla.mil/Defense-Data-Standards/Publications</a>
+          <p data-id="821" class="text-xs mb-3" style="color: var(--text-secondary);">Defense Logistics Manual; primary DoD reference for DODAAD structure and DoDAAC management.</p>
+          <a data-id="822" href="https://www.dla.mil/Defense-Data-Standards/Publications/" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="823" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="824" class="glass-card resource-card p-5">
+          <div data-id="825" class="flex items-center gap-2 mb-2"><i data-id="826" data-lucide="monitor-check" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="827" class="font-bold text-sm">AF DoDAAC WMS</span></div>
+          <a data-id="828" href="https://dodaac.cce.af.mil/" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">dodaac.cce.af.mil</a>
+          <p data-id="829" class="text-xs mb-3" style="color: var(--text-secondary);">Air Force Web Management System for DoDAAC records. Requires CAC.</p>
+          <a data-id="830" href="https://dodaac.cce.af.mil/" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="831" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+        <div data-id="832" class="glass-card resource-card p-5">
+          <div data-id="833" class="flex items-center gap-2 mb-2"><i data-id="834" data-lucide="file-stack" class="w-5 h-5" style="color: var(--accent-secondary)"></i><span data-id="835" class="font-bold text-sm">e-Publishing (AF Manuals)</span></div>
+          <a data-id="836" href="https://www.e-publishing.af.mil/Product-Index/" target="_blank" rel="noopener noreferrer" class="ext-link text-xs mb-2 inline-block" style="font-family: 'JetBrains Mono', monospace;">e-publishing.af.mil/Product-Index</a>
+          <p data-id="837" class="text-xs mb-3" style="color: var(--text-secondary);">Official repository for all Air Force publications including AFMAN 23-230.</p>
+          <a data-id="838" href="https://www.e-publishing.af.mil/Product-Index/" target="_blank" rel="noopener noreferrer" class="ext-link inline-flex items-center gap-1 text-xs font-semibold">Visit <i data-id="839" data-lucide="arrow-right" class="w-3 h-3"></i></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div><!-- end #page-wrapper -->
+
+<!-- ===================== FOOTER ===================== -->
+<footer data-id="840" id="footer-q3r4">
+  <p data-id="841">DoDAAC Knowledge Hub — Made by Copilot</p>
+  <p data-id="842" class="mt-1">This is a reference tool. Always verify with official DoD systems and your Component DoDAAC Manager.</p>
+</footer>
+
+<!-- ===================== SCROLL TO TOP ===================== -->
+<button data-id="843" class="scroll-top-btn" id="scroll-top-btn-s5t6" aria-label="Scroll to top">
+  <i data-id="844" data-lucide="arrow-up" class="w-5 h-5"></i>
+</button>
+
+<!-- ===================== CLASSIFICATION FOOTER ===================== -->
+<div data-id="845" id="classif-footer" style="width:100%;background:#1a7f37;color:#fff;text-align:center;font-family:monospace;font-size:0.85rem;font-weight:700;letter-spacing:0.2em;padding:5px 0;">
+  UNCLASSIFIED // FOR OFFICIAL REFERENCE USE // NOT FOR OPERATIONAL RELEASE WITHOUT REVIEW
+</div>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+/* ===== Problem 7 — Iframe detection and fallback ===== */
+(function() {
+  try {
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('in-iframe');
+    }
+  } catch(e) {
+    document.documentElement.classList.add('in-iframe');
+  }
+})();
+
+/* ===== Safe storage wrapper — gracefully handles sandboxed iframe environments ===== */
+const safeStorage = {
+  get(key) { try { return sessionStorage.getItem(key); } catch(e) { return null; } },
+  set(key, val) { try { sessionStorage.setItem(key, val); } catch(e) {} },
+  remove(key) { try { sessionStorage.removeItem(key); } catch(e) {} },
+  lsGet(key) { try { return localStorage.getItem(key); } catch(e) { return null; } },
+  lsSet(key, val) { try { localStorage.setItem(key, val); } catch(e) {} }
+};
+
+/* ===== LUCIDE ICONS ===== */
+if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
+  lucide.createIcons();
+}
+
+/* ===== DATA ===== */
+const prefixData = [
+  { prefix: 'A', service: 'Department of the Army (Non-Contractor)', contact: 'Army G4 / LOGSA', notes: 'Standard Army units, commands, installations' },
+  { prefix: 'C', service: 'Army Contractor', contact: 'Army G4', notes: 'Contractor DoDAACs performing Army contracts' },
+  { prefix: 'W', service: 'Department of the Army (Additional Series)', contact: 'Army G4', notes: 'Army activities; additional series beyond A-prefix capacity' },
+  { prefix: 'E', service: 'Air Force Contractor', contact: 'AFMC/AFSC', notes: 'Subtypes: EB, ED, EJ, EP, EY per AFMAN 23-230' },
+  { prefix: 'F', service: 'Department of the Air Force (Non-Contractor)', contact: 'AF/A4LR', notes: 'Standard AF units, wings, groups, MAJCOMs' },
+  { prefix: 'J', service: 'Air Force On-Base / Local Use', contact: 'AF/A4LR', notes: 'On-base only DoDAACs (per DMA instruction 8600.3)' },
+  { prefix: 'N', service: 'Department of the Navy (Non-Contractor)', contact: 'NAVSUP BSC', notes: 'Standard Navy units, ships, stations' },
+  { prefix: 'Q', service: 'Navy Contractor', contact: 'NAVSUP BSC', notes: 'Contractor DoDAACs performing Navy contracts' },
+  { prefix: 'R', service: 'Navy Reserve / Pacific Mobility', contact: 'NAVSUP BSC', notes: 'Mobility units, Pacific Fleet' },
+  { prefix: 'V', service: 'Navy Reserve / Atlantic Mobility', contact: 'NAVSUP BSC', notes: 'Mobility units, Atlantic Fleet' },
+  { prefix: 'M', service: 'United States Marine Corps', contact: 'HQMC LPC', notes: 'USMC units; various sub-series by MAJCOM' },
+  { prefix: 'S', service: 'Defense Logistics Agency', contact: 'DLA HQ', notes: 'DLA supply depots, distribution centers' },
+  { prefix: 'H', service: 'Defense Health Agency', contact: 'DHA J4', notes: 'MTFs, medical groups, DHA activities' },
+  { prefix: 'K', service: 'Defense Contract Management Agency', contact: 'DCMA HQ', notes: 'DCMA contract administration offices' },
+  { prefix: 'T', service: 'Department of the Treasury / Other Federal', contact: 'DLA Transaction Services', notes: 'Federal agencies outside DoD using DoDAAC' },
+  { prefix: 'Z', service: 'Other Federal / Non-DoD Agencies', contact: 'DLA Transaction Services', notes: 'Various federal agency series' }
+];
+
+const signalData = [
+  { code: 'A', shipto: 'Requisitioner', billto: 'Requisitioner (rp 30-35)', markfor: 'No', usecase: 'Standard self-funded order; most common code' },
+  { code: 'B', shipto: 'Requisitioner', billto: 'Supplementary Address (rp 45-50)', markfor: 'Yes', usecase: 'Requisitioner pays; bill-to is a separate supplementary address' },
+  { code: 'C', shipto: 'Requisitioner', billto: 'Fund code determines bill-to (rp 52-53)', markfor: 'No', usecase: 'Bill-to determined by fund code conversion table' },
+  { code: 'D', shipto: 'Requisitioner', billto: 'No billing (free issue)', markfor: 'No', usecase: 'Free issue items only; not for GSA requisitions by DoD' },
+  { code: 'J', shipto: 'Supplementary Address', billto: 'Requisitioner (rp 30-35)', markfor: 'Yes', usecase: 'Ship to supplementary address; requisitioner pays' },
+  { code: 'K', shipto: 'Supplementary Address', billto: 'Supplementary Address (rp 45-50)', markfor: 'Yes', usecase: 'Cross-funded; different ship-to and bill-to supp. addresses' },
+  { code: 'L', shipto: 'Supplementary Address', billto: 'Fund code determines bill-to (rp 52-53)', markfor: 'Yes', usecase: 'Ship to supp. address; fund code determines bill-to' },
+  { code: 'M', shipto: 'Supplementary Address', billto: 'No billing (free issue / ammo transfer)', markfor: 'Yes', usecase: 'Ammunition ownership transfers with Project Code CYK; no billing' }
+];
+
+const authData = [
+  { authcode: '00', authdesc: 'Requisition', canreq: 'Yes', canship: 'Yes', canbill: 'Yes', notes: 'No restrictions; most common active-duty code' },
+  { authcode: '01', authdesc: 'Ship-To Only', canreq: 'No', canship: 'Yes', canbill: 'No', notes: 'Supplementary address field only with Signal Code J, L, M, X' },
+  { authcode: '02', authdesc: 'Finance / Bill-To Only', canreq: 'No', canship: 'No', canbill: 'Yes', notes: 'Supp. address field only with Signal Code B' },
+  { authcode: '03', authdesc: 'Do Not Ship-To', canreq: 'Yes', canship: 'No', canbill: 'Yes', notes: 'Must use Signal Code J, K, L, M, or X when requisitioning' },
+  { authcode: '04', authdesc: 'DLA Disposition Services Only', canreq: 'No', canship: 'Yes', canbill: 'Yes', notes: 'Restricted to DLA Disposition Services (DoD excess) material only' },
+  { authcode: '05', authdesc: 'Non-Requisition', canreq: 'No', canship: 'Yes', canbill: 'Yes', notes: 'Cannot initiate purchase/requisition; can be designated as ship-to or bill-to' },
+  { authcode: '06', authdesc: 'Free Issue', canreq: 'No', canship: 'Yes', canbill: 'No', notes: 'No-cost items only (DLA Disp. Services, NGA maps); Signal Code D or M only' },
+  { authcode: '07', authdesc: 'Administrative', canreq: 'No', canship: 'No', canbill: 'No', notes: 'Info/identification only (contingency reserve codes, Defense Courier)' }
+];
+
+const purposeData = [
+  { purcode: 'Procurement Authority Flag', purfunc: 'Y/N flag indicating the activity has been delegated legal authority to award contracts', pursys: 'PIEE, FPDS, EDA — only Y-flagged DoDAACs can appear as Contracting Officer DoDAACs', users: 'Delegated from SecDef through USD(AT&L)/DPAP' },
+  { purcode: 'TAC 1 (Owner / Mailing)', purfunc: 'Mandatory address record: official mailing address of the activity', pursys: 'Required on all DoDAACs regardless of Authority Code', users: 'Identifies the organizational owner address' },
+  { purcode: 'TAC 2 (Ship-To / Freight)', purfunc: 'Freight/physical delivery address for the activity', pursys: 'Used by DAAS and carriers for routing physical shipments', users: 'Required for Authority Codes 00, 01, 04, 05, 06' },
+  { purcode: 'TAC 3 (Bill-To / Finance)', purfunc: 'Billing address; identifies the activity responsible for payment', pursys: 'Used in WAWF/MOCAS for invoice routing and DFAS payment', users: 'Required for Authority Codes 00, 02, 03, 04' },
+  { purcode: 'TAC 4 (Small Parcel / Postal)', purfunc: 'Postal/small parcel address for items under 70 lbs', pursys: 'Used for USPS or small parcel carrier routing', users: 'Optional; supplements TAC 2 for parcel-weight items' },
+  { purcode: 'Organization Type Code', purfunc: 'D=DoD/USCG; F=Federal Non-DoD; S=State/Local; N=NGO; X=Foreign', pursys: 'Governs which transactions a DoDAAC can participate in across DoD systems', users: 'Set by the Central Service/Agency Point (CSP)' },
+  { purcode: 'Pending Deletion Flag', purfunc: 'Indicates a future deletion date is loaded for the DoDAAC', pursys: 'DAASINQ/eDAASINQ shows a "Future data available" indicator', users: 'DoDAAC remains active until deletion date is reached' }
+];
+
+const glossaryData = [
+  { term: 'AFMAN 23-230', def: 'Air Force Manual governing Air Force supply chain management, DoDAAC management, and materiel management procedures.' },
+  { term: 'AFRC', def: 'Air Force Reserve Command; Reserve component.' },
+  { term: 'ALC', def: 'Air Logistics Complex; Air Force depot-level maintenance and overhaul facility (e.g., OC-ALC, WR-ALC, SA-ALC).' },
+  { term: 'ANG', def: 'Air National Guard; Reserve component of the Air Force.' },
+  { term: 'Authority Code', def: 'Numeric code (00–07) in DoDAAD defining what a DoDAAC is authorized to do — whether it can requisition, receive shipments, or be billed. Source: DLM 4000.25, Volume 6.' },
+  { term: 'BPN', def: 'Budget Program Number; links DoDAAC financial responsibility to appropriation data in DEAMS.' },
+  { term: 'CAC', def: 'Common Access Card; the standard DoD smart card used for identification and to access DoD computer networks and systems.' },
+  { term: 'CAGE Code', def: 'Commercial and Government Entity code; a 5-character identifier assigned to companies doing business with the federal government. Identifies contractors, NOT DoD activities.' },
+  { term: 'DAAS', def: 'Defense Automatic Addressing System; the central switching and routing system for DoD logistics transactions and messages.' },
+  { term: 'DCMA', def: 'Defense Contract Management Agency; the DoD agency responsible for administering contracts after award, including quality assurance and delivery oversight.' },
+  { term: 'DEAMS', def: 'Defense Enterprise Accounting and Management System; Air Force financial ERP; interfaces with DoDAAC Bill-To data.' },
+  { term: 'DLA', def: 'Defense Logistics Agency; the combat logistics support agency providing worldwide logistics support. Manages DoDAAC assignment and maintains the DODAAD database.' },
+  { term: 'DLM 4000.25', def: 'Defense Logistics Manual; primary DoD reference governing DODAAD, DoDAAC structure, and logistics data management.' },
+  { term: 'DMLSS', def: 'Defense Medical Logistics Standard Support; medical supply chain system used by MTFs.' },
+  { term: 'DODAAD', def: 'Department of Defense Activity Address Directory; the master database containing all DoDAAC records with associated addresses, POCs, and status information.' },
+  { term: 'DoDAAC', def: 'Department of Defense Activity Address Code; a 6-character alphanumeric code that uniquely identifies a DoD unit, activity, or organization for logistics and procurement purposes.' },
+  { term: 'DPAS', def: 'Defense Property Accountability System; the DoD-wide system for tracking and managing government-furnished property and equipment.' },
+  { term: 'FMS', def: 'Foreign Military Sales; security cooperation program.' },
+  { term: 'FY', def: 'Fiscal Year; the DoD fiscal year runs from October 1 through September 30. FY2026 runs Oct 1, 2025 – Sep 30, 2026.' },
+  { term: 'GCSS-Army', def: "Global Combat Support System-Army; the Army's primary ERP system for tactical and installation logistics." },
+  { term: 'LIMS-EV', def: 'Logistics, Installations, and Mission Support – Enterprise View; AF logistics data aggregation tool.' },
+  { term: 'LMP', def: "Logistics Modernization Program; the Army's SAP-based ERP system for national-level supply chain management and depot maintenance." },
+  { term: 'LOA', def: 'Line of Accounting; the complete funding citation used on government purchase documents, identifying the appropriation, fiscal year, and accounting classification.' },
+  { term: 'MAPAC', def: 'Military Assistance Program Address Code; used in FMS and security cooperation logistics.' },
+  { term: 'Mark-For', def: 'Informal term for the Supplementary Address (rp 45-50 in MILSTRIP). A secondary routing code placed on shipping labels to direct delivery to a specific sub-unit or tenant activity within a larger installation.' },
+  { term: 'MILSTRIP', def: 'Military Standard Requisitioning and Issue Procedures; the standardized system for requisitioning supplies and services across DoD.' },
+  { term: 'MTF', def: 'Military Treatment Facility; medical facility (hospital, clinic).' },
+  { term: 'NAF', def: 'Non-Appropriated Fund; funding source for MWR, AAFES, and similar activities.' },
+  { term: 'PIEE', def: "Procurement Integrated Enterprise Environment; the DoD's single entry point for procurement and acquisition, providing tools for contract management, vendor interaction, and DoDAAC administration." },
+  { term: 'POC', def: 'Point of Contact; the designated individual responsible for maintaining DoDAAC information, responding to inquiries, and coordinating updates.' },
+  { term: 'Prefix (Service/Agency)', def: 'The first character of a DoDAAC identifying the owning Service or Agency. Army uses A, C, or W; Air Force uses E, F, or J; Navy uses N, Q, R, or V. Per DLM 4000.25, Volume 2, Appendix 7.2.' },
+  { term: 'RIC', def: 'Routing Identifier Code; 3-character code in DAAS that identifies the routing of a supply requisition, often linked to a DoDAAC.' },
+  { term: 'RQ', def: 'Requisitioning; the ordering function associated with a DoDAAC, enabling an activity to place orders for supplies and services.' },
+  { term: 'SAP', def: 'Special Access Program; restricted DoD program.' },
+  { term: 'SBSS', def: 'Standard Base Supply System; Air Force base-level supply system; interfaces with DoDAAC Ship-To data.' },
+  { term: 'Signal Code', def: "A single-letter code (A through Z) per DLM 4000.25 Appendix 7.10 that defines the ship-to and bill-to DoDAAC relationships on a requisition. 'Supplementary Address' (rp 45-50) is the formal term for the field commonly called 'Mark-For.'" },
+  { term: 'Supplementary Address', def: 'Formal term from DLM 4000.25 for the address in MILSTRIP record positions 45-50. Informally called "Mark-For." Used with Signal Codes B, J, K, L, M to designate alternate ship-to or bill-to addresses.' },
+  { term: 'TAC', def: 'Type of Address Code. DoDAAD uses TAC 1 (owner/mailing), TAC 2 (ship-to/freight), TAC 3 (bill-to/finance), and TAC 4 (small parcel/postal) to define address types for a DoDAAC.' },
+  { term: 'UIC', def: 'Unit Identification Code; a 6-character code used primarily by the Army and Marine Corps to identify organizational units. Different from DoDAAC but often associated.' },
+  { term: 'WAWF', def: "Wide Area Workflow; the DoD's mandatory electronic invoicing and receipt/acceptance system, now a module inside PIEE. Used by vendors and government personnel to process payments." },
+  { term: 'WMS', def: 'Web Management System; AF-specific DoDAAC management portal requiring CAC access.' }
+].sort((a, b) => a.term.localeCompare(b.term));
+
+/* ===== SEARCH CONTENT INDEX ===== */
+const sections = [
+  { id: 'overview', title: 'Overview', icon: 'home' },
+  { id: 'what-is', title: 'What is a DoDAAC?', icon: 'clipboard-list' },
+  { id: 'code-structure', title: 'Code Structure', icon: 'hash' },
+  { id: 'dodaac-types', title: 'DoDAAC Types', icon: 'tags' },
+  { id: 'how-to-request', title: 'How to Request', icon: 'file-text' },
+  { id: 'lookup-validation', title: 'Lookup & Validation', icon: 'search' },
+  { id: 'troubleshooting', title: 'Troubleshooting', icon: 'alert-triangle' },
+  { id: 'reference-tables', title: 'Reference Tables', icon: 'table-2' },
+  { id: 'glossary', title: 'Glossary', icon: 'book-open' },
+  { id: 'resources', title: 'Resources', icon: 'external-link' }
+];
+
+function buildSearchIndex() {
+  const index = [];
+  sections.forEach(sec => {
+    const el = document.getElementById(sec.id);
+    if (!el) return;
+    const text = el.innerText || el.textContent || '';
+    const sentences = text.split(/[.!?\n]+/).map(s => s.trim()).filter(s => s.length > 15);
+    sentences.forEach(s => {
+      index.push({ section: sec, text: s.substring(0, 200) });
+    });
+  });
+  return index;
+}
+let searchIndex = [];
+
+/* ===== DISCLAIMER BANNER ===== */
+(function() {
+  const banner = document.getElementById('disclaimer-banner-d1c2');
+  const dismissBtn = document.getElementById('dismiss-disclaimer-x2y3');
+  if (safeStorage.get('dodaac-disclaimer-dismissed') === 'true') {
+    banner.style.display = 'none';
+  }
+  dismissBtn.addEventListener('click', function() {
+    banner.style.display = 'none';
+    safeStorage.set('dodaac-disclaimer-dismissed', 'true');
+  });
+})();
+
+/* ===== DARK MODE ===== */
+function initDarkMode() {
+  const stored = safeStorage.lsGet('dodaac-dark-mode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = stored !== null ? stored === 'true' : prefersDark;
+  if (isDark) document.documentElement.classList.add('dark');
+  updateDMIcons();
+}
+
+function updateDMIcons() {
+  const isDark = document.documentElement.classList.contains('dark');
+  document.querySelectorAll('.dm-icon-sun').forEach(el => el.style.display = isDark ? 'none' : 'block');
+  document.querySelectorAll('.dm-icon-moon').forEach(el => el.style.display = isDark ? 'block' : 'none');
+}
+
+initDarkMode();
+
+document.getElementById('dm-toggle-s1t2').addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+  safeStorage.lsSet('dodaac-dark-mode', document.documentElement.classList.contains('dark'));
+  updateDMIcons();
+});
+document.getElementById('dm-toggle-s1t2').addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.target.click(); }
+});
+
+/* ===== MOBILE SIDEBAR ===== */
+const sidebar = document.getElementById('sidebar-w5x6');
+const overlay = document.getElementById('mobile-overlay-u3v4');
+const mobileBtn = document.getElementById('mobile-menu-btn-a1b2');
+
+function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); }
+function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); }
+
+mobileBtn.addEventListener('click', () => { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+overlay.addEventListener('click', closeSidebar);
+
+/* ===== SIDEBAR NAV LINKS ===== */
+document.querySelectorAll('.sidebar-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href').substring(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeSidebar();
+    }
+  });
+});
+
+/* ===== SCROLL SPY ===== */
+function setupScrollSpy() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll('.sidebar-link').forEach(l => {
+          l.classList.toggle('active', l.getAttribute('data-section') === id);
+        });
+      }
+    });
+  }, { rootMargin: '-100px 0px -60% 0px', threshold: 0.1 });
+  sections.forEach(sec => {
+    const el = document.getElementById(sec.id);
+    if (el) observer.observe(el);
+  });
+}
+setupScrollSpy();
+
+/* ===== REVEAL ON SCROLL ===== */
+function setupReveal() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, idx) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), idx * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+setupReveal();
+
+/* ===== SCROLL TO TOP ===== */
+const scrollBtn = document.getElementById('scroll-top-btn-s5t6');
+window.addEventListener('scroll', () => {
+  scrollBtn.classList.toggle('show', window.scrollY > 300);
+}, { passive: true });
+scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ===== ACCORDION ===== */
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+    item.classList.toggle('open', !isOpen);
+    header.setAttribute('aria-expanded', !isOpen);
+  });
+  header.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); header.click(); }
+  });
+});
+
+/* ===== CHECKLISTS ===== */
+function initChecklist(prefix, count, progressId) {
+  const progressEl = document.getElementById(progressId);
+  function update() {
+    let checked = 0;
+    for (let i = 0; i < count; i++) {
+      const cb = document.getElementById(`${prefix}-cb-${i}`);
+      if (!cb) continue;
+      const item = cb.closest('.checklist-item');
+      const isChecked = cb.checked;
+      item.classList.toggle('checked', isChecked);
+      if (isChecked) checked++;
+      safeStorage.set(`dodaac-${prefix}-${i}`, isChecked);
+    }
+    progressEl.textContent = `${checked} of ${count} items complete`;
+  }
+  for (let i = 0; i < count; i++) {
+    const cb = document.getElementById(`${prefix}-cb-${i}`);
+    if (!cb) continue;
+    const stored = safeStorage.get(`dodaac-${prefix}-${i}`);
+    if (stored === 'true') cb.checked = true;
+    cb.addEventListener('change', update);
+  }
+  update();
+  return update;
+}
+const updateReqCl = initChecklist('req', 7, 'checklist-progress-e5f6');
+const updateValCl = initChecklist('val', 8, 'val-checklist-progress-k1l2');
+
+document.getElementById('reset-req-cl-i9j0').addEventListener('click', () => {
+  for (let i = 0; i < 7; i++) { document.getElementById(`req-cb-${i}`).checked = false; safeStorage.remove(`dodaac-req-${i}`); }
+  updateReqCl();
+});
+document.getElementById('reset-val-cl-o5p6').addEventListener('click', () => {
+  for (let i = 0; i < 8; i++) { const cb = document.getElementById(`val-cb-${i}`); if(cb) cb.checked = false; safeStorage.remove(`dodaac-val-${i}`); }
+  updateValCl();
+});
+
+/* ===== REFERENCE TABLES ===== */
+let prefixSort = { col: null, dir: 'asc' };
+let prefixFilter = '';
+let signalSort = { col: null, dir: 'asc' };
+let signalFilter = '';
+let authSort = { col: null, dir: 'asc' };
+let authFilter = '';
+let purposeSort = { col: null, dir: 'asc' };
+let purposeFilter = '';
+
+function renderPrefixTable() {
+  let data = [...prefixData];
+  if (prefixFilter) { const q = prefixFilter.toLowerCase(); data = data.filter(r => Object.values(r).some(v => String(v).toLowerCase().includes(q))); }
+  if (prefixSort.col) { data.sort((a, b) => { const va = a[prefixSort.col] || '', vb = b[prefixSort.col] || ''; return prefixSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va); }); }
+  const tbody = document.getElementById('prefix-table-body-y5z6');
+  tbody.innerHTML = data.map((r, i) => `<tr style="${i % 2 ? 'background: var(--table-alt);' : ''}"><td class="px-4 py-2.5" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">${r.prefix}</td><td class="px-4 py-2.5">${r.service}</td><td class="px-4 py-2.5 text-sm" style="color: var(--text-secondary);">${r.contact}</td><td class="px-4 py-2.5 text-sm" style="color: var(--text-muted);">${r.notes}</td></tr>`).join('');
+  document.getElementById('prefix-table-count-u1v2').textContent = `Showing ${data.length} of ${prefixData.length} rows`;
+}
+
+function renderSignalTable() {
+  let data = [...signalData];
+  if (signalFilter) { const q = signalFilter.toLowerCase(); data = data.filter(r => Object.values(r).some(v => String(v).toLowerCase().includes(q))); }
+  if (signalSort.col) { data.sort((a, b) => { const va = a[signalSort.col] || '', vb = b[signalSort.col] || ''; return signalSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va); }); }
+  const tbody = document.getElementById('signal-table-body-g3h4');
+  tbody.innerHTML = data.map((r, i) => `<tr style="${i % 2 ? 'background: var(--table-alt);' : ''}"><td class="px-4 py-2.5" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">${r.code}</td><td class="px-4 py-2.5">${r.shipto}</td><td class="px-4 py-2.5">${r.billto}</td><td class="px-4 py-2.5">${r.markfor}</td><td class="px-4 py-2.5 text-sm" style="color: var(--text-secondary);">${r.usecase}</td></tr>`).join('');
+  document.getElementById('signal-table-count-c9d0').textContent = `Showing ${data.length} of ${signalData.length} rows`;
+}
+
+function renderAuthTable() {
+  let data = [...authData];
+  if (authFilter) { const q = authFilter.toLowerCase(); data = data.filter(r => Object.values(r).some(v => String(v).toLowerCase().includes(q))); }
+  if (authSort.col) { data.sort((a, b) => { const va = a[authSort.col] || '', vb = b[authSort.col] || ''; return authSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va); }); }
+  const tbody = document.getElementById('auth-table-body-u7i8');
+  tbody.innerHTML = data.map((r, i) => `<tr style="${i % 2 ? 'background: var(--table-alt);' : ''}"><td class="px-4 py-2.5" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-primary);">${r.authcode}</td><td class="px-4 py-2.5">${r.authdesc}</td><td class="px-4 py-2.5 text-center">${r.canreq}</td><td class="px-4 py-2.5 text-center">${r.canship}</td><td class="px-4 py-2.5 text-center">${r.canbill}</td><td class="px-4 py-2.5 text-sm" style="color: var(--text-muted);">${r.notes}</td></tr>`).join('');
+  document.getElementById('auth-table-count-e3r4').textContent = `Showing ${data.length} of ${authData.length} rows`;
+}
+
+function renderPurposeTable() {
+  let data = [...purposeData];
+  if (purposeFilter) { const q = purposeFilter.toLowerCase(); data = data.filter(r => Object.values(r).some(v => String(v).toLowerCase().includes(q))); }
+  if (purposeSort.col) { data.sort((a, b) => { const va = a[purposeSort.col] || '', vb = b[purposeSort.col] || ''; return purposeSort.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va); }); }
+  const tbody = document.getElementById('purpose-table-body-g5h6');
+  tbody.innerHTML = data.map((r, i) => `<tr style="${i % 2 ? 'background: var(--table-alt);' : ''}"><td class="px-4 py-2.5 font-semibold" style="color: var(--accent-primary);">${r.purcode}</td><td class="px-4 py-2.5">${r.purfunc}</td><td class="px-4 py-2.5 text-sm" style="color: var(--text-secondary);">${r.pursys}</td><td class="px-4 py-2.5 text-sm" style="color: var(--text-muted);">${r.users}</td></tr>`).join('');
+  document.getElementById('purpose-table-count-a1s2').textContent = `Showing ${data.length} of ${purposeData.length} rows`;
+}
+
+renderPrefixTable();
+renderSignalTable();
+renderAuthTable();
+renderPurposeTable();
+
+document.getElementById('prefix-table-search-s9t0').addEventListener('input', e => { prefixFilter = e.target.value; renderPrefixTable(); });
+document.getElementById('signal-table-search-a7b8').addEventListener('input', e => { signalFilter = e.target.value; renderSignalTable(); });
+document.getElementById('auth-table-search-q1w2').addEventListener('input', e => { authFilter = e.target.value; renderAuthTable(); });
+document.getElementById('purpose-table-search-o9p0').addEventListener('input', e => { purposeFilter = e.target.value; renderPurposeTable(); });
+
+document.querySelectorAll('.sortable-th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.dataset.table;
+    const col = th.dataset.sort;
+    if (table === 'prefix') {
+      prefixSort.dir = (prefixSort.col === col) ? (prefixSort.dir === 'asc' ? 'desc' : 'asc') : 'asc';
+      prefixSort.col = col;
+      renderPrefixTable();
+    } else if (table === 'signal') {
+      signalSort.dir = (signalSort.col === col) ? (signalSort.dir === 'asc' ? 'desc' : 'asc') : 'asc';
+      signalSort.col = col;
+      renderSignalTable();
+    } else if (table === 'auth') {
+      authSort.dir = (authSort.col === col) ? (authSort.dir === 'asc' ? 'desc' : 'asc') : 'asc';
+      authSort.col = col;
+      renderAuthTable();
+    } else if (table === 'purpose') {
+      purposeSort.dir = (purposeSort.col === col) ? (purposeSort.dir === 'asc' ? 'desc' : 'asc') : 'asc';
+      purposeSort.col = col;
+      renderPurposeTable();
+    }
+  });
+});
+
+/* ===== GLOSSARY ===== */
+function renderGlossary(filter) {
+  const container = document.getElementById('glossary-entries-m9n0');
+  const emptyState = document.getElementById('glossary-empty-o1p2');
+  const q = (filter || '').toLowerCase();
+  const filtered = q ? glossaryData.filter(g => g.term.toLowerCase().includes(q) || g.def.toLowerCase().includes(q)) : glossaryData;
+
+  if (filtered.length === 0) {
+    container.innerHTML = '';
+    emptyState.classList.remove('hidden');
+    return;
+  }
+  emptyState.classList.add('hidden');
+  container.innerHTML = filtered.map(g => `<div class="glossary-entry" id="glossary-${g.term.replace(/[\s\/()]+/g, '-').toLowerCase()}"><strong style="color: var(--accent-primary);">${g.term}</strong><span class="mx-1" style="color: var(--text-muted);">—</span><span style="color: var(--text-secondary);">${g.def}</span></div>`).join('');
+
+  const letters = new Set(filtered.map(g => g.term[0].toUpperCase()));
+  document.querySelectorAll('.az-link').forEach(l => {
+    l.classList.toggle('has-entries', letters.has(l.textContent));
+    l.classList.toggle('disabled', !letters.has(l.textContent));
+  });
+}
+
+const azBar = document.getElementById('az-bar-i5j6');
+const usedLetters = new Set(glossaryData.map(g => g.term[0].toUpperCase()));
+'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(letter => {
+  const a = document.createElement('a');
+  a.className = `az-link${usedLetters.has(letter) ? ' has-entries' : ' disabled'}`;
+  a.textContent = letter;
+  a.href = '#';
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    if (!usedLetters.has(letter)) return;
+    const searchInput = document.getElementById('glossary-search-k7l8');
+    searchInput.value = letter;
+    renderGlossary(letter);
+  });
+  azBar.appendChild(a);
+});
+
+renderGlossary('');
+
+document.getElementById('glossary-search-k7l8').addEventListener('input', e => {
+  renderGlossary(e.target.value);
+});
+
+/* ===== GLOBAL SEARCH ===== */
+const globalSearch = document.getElementById('global-search-m5n6');
+const searchResults = document.getElementById('search-results-q9r0');
+const searchClear = document.getElementById('search-clear-o7p8');
+let activeResultIdx = -1;
+
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+function performSearch(query) {
+  if (!searchIndex.length) searchIndex = buildSearchIndex();
+  const q = query.toLowerCase().trim();
+  if (!q || q.length < 2) { searchResults.classList.remove('show'); return; }
+
+  const matches = [];
+  const seen = new Set();
+  searchIndex.forEach(item => {
+    if (item.text.toLowerCase().includes(q) && !seen.has(item.section.id + item.text.substring(0, 40))) {
+      seen.add(item.section.id + item.text.substring(0, 40));
+      const idx = item.text.toLowerCase().indexOf(q);
+      const start = Math.max(0, idx - 30);
+      const end = Math.min(item.text.length, idx + q.length + 50);
+      let excerpt = (start > 0 ? '...' : '') + item.text.substring(start, end) + (end < item.text.length ? '...' : '');
+      excerpt = excerpt.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<span class="search-highlight">$1</span>');
+      matches.push({ section: item.section, excerpt });
+    }
+  });
+
+  const results = matches.slice(0, 8);
+  if (results.length === 0) {
+    searchResults.innerHTML = '<div class="p-4 text-center text-sm" style="color: var(--text-muted);">No results found</div>';
+    searchResults.classList.add('show');
+    return;
+  }
+
+  searchResults.innerHTML = results.map((r, i) => `<div class="search-result-item" data-target="${r.section.id}" data-idx="${i}"><i data-lucide="${r.section.icon}" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--accent-secondary)"></i><div><div class="text-xs font-semibold" style="color: var(--accent-primary);">${r.section.title}</div><div class="text-xs mt-0.5" style="color: var(--text-secondary);">${r.excerpt}</div></div></div>`).join('');
+  searchResults.classList.add('show');
+  activeResultIdx = -1;
+
+  if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") lucide.createIcons();
+
+  searchResults.querySelectorAll('.search-result-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const target = document.getElementById(item.dataset.target);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.style.transition = 'box-shadow 0.3s ease';
+        target.style.boxShadow = '0 0 0 3px var(--accent-highlight)';
+        setTimeout(() => { target.style.boxShadow = ''; }, 2000);
+      }
+      closeSearch();
+    });
+  });
+}
+
+function closeSearch() {
+  searchResults.classList.remove('show');
+  globalSearch.value = '';
+  searchClear.classList.add('hidden');
+}
+
+const debouncedSearch = debounce(q => performSearch(q), 180);
+
+globalSearch.addEventListener('input', e => {
+  const v = e.target.value;
+  searchClear.classList.toggle('hidden', !v);
+  debouncedSearch(v);
+});
+
+globalSearch.addEventListener('keydown', e => {
+  const items = searchResults.querySelectorAll('.search-result-item');
+  if (e.key === 'Escape') { closeSearch(); return; }
+  if (e.key === 'ArrowDown') { e.preventDefault(); activeResultIdx = Math.min(activeResultIdx + 1, items.length - 1); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); activeResultIdx = Math.max(activeResultIdx - 1, 0); }
+  items.forEach((item, i) => item.classList.toggle('active', i === activeResultIdx));
+  if (e.key === 'Enter' && activeResultIdx >= 0 && items[activeResultIdx]) { items[activeResultIdx].click(); }
+});
+
+searchClear.addEventListener('click', closeSearch);
+
+document.addEventListener('click', e => {
+  const container = document.getElementById('search-container-k3l4');
+  if (!container.contains(e.target)) searchResults.classList.remove('show');
+});
+
+/* ===== TOOLTIP MOBILE ===== */
+document.querySelectorAll('.tooltip-trigger').forEach(trigger => {
+  trigger.addEventListener('click', e => {
+    if (window.innerWidth < 768) {
+      e.preventDefault();
+      document.querySelectorAll('.tooltip-trigger.tooltip-active').forEach(t => { if (t !== trigger) t.classList.remove('tooltip-active'); });
+      trigger.classList.toggle('tooltip-active');
+    }
+  });
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.tooltip-trigger')) {
+    document.querySelectorAll('.tooltip-trigger.tooltip-active').forEach(t => t.classList.remove('tooltip-active'));
+  }
+});
+
+/* ===== BUILD SEARCH INDEX AFTER LOAD ===== */
+requestAnimationFrame(() => { searchIndex = buildSearchIndex(); });
+</script>
+</body>
+</html>
